@@ -10,12 +10,13 @@ A small x86_64 linux userspace from scratch, for educational purposes.
  - [x] Build an init binary
  - [x] Construct the initramfs
  - [x] Package and build a bootable disk image
- - [ ] Built libc and libc runtime
+ - [ ] Build a libc and libc runtime
  - [ ] Statically link binaries with our own libc
  - [ ] Iterate on libc, and core utilities
  - [ ] Build an x-server implementation
  - [ ] Port build scripts to Nix?
  - [ ] Build a bootloader?
+ - [ ] Dynamic linking support?
 
 ## Building
 
@@ -26,7 +27,14 @@ Buiding with docker (or podman) is also supported.
 
 ```sh
 podman build -t wuso-linux .
-podman cp wuso-instance:/home/wuso/build/x86_64-wuso-linux2.iso .
+podman cp wuso-linux:/home/wuso/build/x86_64-wuso-linux.iso .
 ```
 
 Note: Build has only been tested on arm64 macOS, so cross-compilation is the default behavior.
+
+## Developing
+
+With the [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension installed in VSCode, the project will automatically be mounted
+in a development container with all the necessary dependencies installed. From here, you can
+attach a terminal to the container (or use the built-in terminal) to run `make` and build the
+image, and changes to the source will be reflected on the host filesystem.

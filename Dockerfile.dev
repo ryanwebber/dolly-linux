@@ -36,26 +36,5 @@ RUN apt-get install -y \
 # Ensure the shell is bash
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-RUN mkdir -p /home/wuso
-WORKDIR /home/wuso
-
-# Copy the necessary files to build the kernel
-COPY scripts /home/wuso/scripts
-COPY Makefile /home/wuso/Makefile
-
-# Run the host-check script to verify the environment
-RUN /home/wuso/scripts/check-host.sh
-
-# Build the kernel. We do this explicitly to leverage
-# the docker cache since the kernel build is slow.
-RUN make -C /home/wuso dirs kernel
-
-# Copy the necessary files to build the distro
-COPY config /home/wuso/config
-COPY userspace /home/wuso/userspace
-
-# Build the distro
-RUN make -C /home/wuso
-
 # Keep the container running
 CMD ["/bin/bash"]
