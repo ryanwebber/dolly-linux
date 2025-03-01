@@ -45,17 +45,23 @@ WORKDIR /home/wuso
 ENV WUSO_BUILD_ROOT=/home/wuso
 ENV WUSO_BUILD_JOBS=8
 
-# Copy the necessary directories into the container (for syncing similar to Vagrant's rsync)
-COPY config /home/wuso/config
+# Copy the necessary files to build the kernel
 COPY scripts /home/wuso/scripts
-COPY userspace /home/wuso/userspace
 COPY Makefile /home/wuso/Makefile
 
 # Run the host-check script to verify the environment
 RUN /home/wuso/scripts/check-host.sh
 
-# Run the distro build script to build the distro
-# RUN /home/wuso/scripts/make-distro.sh $MAKE_DISTRO_SCRIPTS
+# Build the kernel. We do this explicitly to leverage
+# the docker cache since the kernel build is slow.
+RUN make -C /home/wuso dirs kernel
+
+# Copy the necessary files to build the distro
+COPY config /home/wuso/config
+COPY userspace /home/wuso/userspace
+
+# Build the distro
+RUN make -C /home/wuso
 
 # Keep the container running
 CMD ["/bin/bash"]
