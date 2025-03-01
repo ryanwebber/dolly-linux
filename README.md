@@ -1,5 +1,7 @@
 # Wuso Linux
 
+[![Build Image](https://github.com/ryanwebber/wuso-linux/actions/workflows/docker-image.yml/badge.svg)](https://github.com/ryanwebber/wuso-linux/actions/workflows/docker-image.yml)
+
 A small x86_64 linux userspace from scratch, for educational purposes.
 
 ## Plan
