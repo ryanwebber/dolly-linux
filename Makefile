@@ -1,7 +1,7 @@
 
 ARCH := x86_64
 TOOLCHAIN := $(ARCH)-linux-gnu-
-BUILD_DIR := build
+BUILD_DIR ?= build
 
 CC := $(TOOLCHAIN)gcc
 
@@ -28,7 +28,7 @@ dirs:
 
 iso: $(ISO_TARGET)
 
-$(ISO_TARGET): kernel initramfs
+$(ISO_TARGET): $(KERNEL_IMAGE) $(INITRAMFS)
 	@mkdir -p $(BOOT_FILES)/boot
 	@mkdir -p $(BOOT_FILES)/boot/syslinux
 	@cp config/syslinux.cfg $(BOOT_FILES)/boot/syslinux
@@ -41,24 +41,24 @@ $(ISO_TARGET): kernel initramfs
 	genisoimage -o $(ISO_TARGET) -b boot/syslinux/isolinux.bin -c boot/syslinux/boot.cat -J -r -no-emul-boot -boot-load-size 4 -boot-info-table $(BOOT_FILES)
 	@echo "Bootable ISO built to $(ISO_TARGET)"
 
-initramfs: dirs $(INITRAMFS)
+initramfs: $(INITRAMFS)
 
-$(INITRAMFS): userspace
+$(INITRAMFS): dirs userspace
 	@mkdir -p $(BUILD_DIR)/initramfs
 	$(MAKE) -C userspace install CC=$(CC) BUILD_DIR=$(abspath $(BUILD_DIR))/userspace PREFIX=$(abspath $(BUILD_DIR)/initramfs)
 	cd $(BUILD_DIR)/initramfs && find . | cpio -H newc -o > $(abspath $(INITRAMFS))
 
-kernel: dirs $(KERNEL_IMAGE)
+kernel: $(KERNEL_IMAGE)
 
-$(KERNEL_IMAGE):
+$(KERNEL_IMAGE): dirs
 	wget -O $(BUILD_DIR)/$(KERNEL_VERSION).tar.xz $(KERNEL_URL)
-	tar -xvf $(BUILD_DIR)/$(KERNEL_VERSION).tar.xz -C $(BUILD_DIR)
+	tar -xf $(BUILD_DIR)/$(KERNEL_VERSION).tar.xz -C $(BUILD_DIR)
 	@mkdir -p $(BUILD_DIR)/$(KERNEL_VERSION)/build
 	$(MAKE) -C $(BUILD_DIR)/$(KERNEL_VERSION) ARCH=$(KERNEL_ARCH) CROSS_COMPILE=$(KERNEL_CROSS_COMPILE) defconfig
 	$(MAKE) -C $(BUILD_DIR)/$(KERNEL_VERSION) ARCH=$(KERNEL_ARCH) CROSS_COMPILE=$(KERNEL_CROSS_COMPILE) -j$(KERNEL_BUILD_JOBS)
 	@echo "Kernel image built to $(KERNEL_IMAGE)"
 
 userspace:	
-	$(MAKE) -C userspace CC=$(CC) BUILD_DIR=$(abspath $(BUILD_DIR))/userspace
+	$(MAKE) -C userspace TOOLCHAIN=$(TOOLCHAIN) BUILD_DIR=$(abspath $(BUILD_DIR))/userspace
 
 .PHONY: all iso kernel dirs initramfs userspace

@@ -2,7 +2,8 @@
 PREFIX ?=
 BUILD_DIR ?= build
 
-CC := gcc
+TOOLCHAIN ?=
+
 COMMON_CFLAGS := -Wall
 COMMON_LDFLAGS :=
 
@@ -14,7 +15,7 @@ all: $(SUBDIRS)
 # For each subdirectory, invoke its Makefile, passing the build directories and flags
 $(SUBDIRS):
 	$(MAKE) -C $@ BUILD_DIR=$(abspath $(BUILD_DIR)/$@) \
-	        CC=$(CC) CFLAGS="$(COMMON_CFLAGS)" LDFLAGS="$(COMMON_LDFLAGS)"
+	        TOOLCHAIN=$(TOOLCHAIN) CFLAGS="$(COMMON_CFLAGS)" LDFLAGS="$(COMMON_LDFLAGS)"
 
 install:
 	@for dir in $(SUBDIRS); do \

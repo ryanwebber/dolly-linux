@@ -2,7 +2,11 @@ MODULE := init
 SRC_DIR := src
 INCLUDE_DIR :=
 
+TOOLCHAIN ?=
+CC ?= $(TOOLCHAIN)gcc
+
 PREFIX ?=
+
 BUILD_DIR ?= build
 
 # Append module-specific flags to the common flags from the parent
