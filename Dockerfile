@@ -1,9 +1,7 @@
 # Use the Debian stable image as the base
 FROM debian:stable
 
-ARG MAKE_DISTRO_SCRIPTS=
-
-# Update and install the necessary packages
+# Update and install basic dependencies
 RUN apt-get update && \
     apt-get install -y \
     gcc \
