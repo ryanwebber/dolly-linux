@@ -1,9 +1,8 @@
-MODULE := true
+MODULE := init
 SRC_DIR := src
 INCLUDE_DIR :=
 
 PREFIX ?=
-BIN_DIR ?= $(PREFIX)/usr/bin
 BUILD_DIR ?= build
 
 # Append module-specific flags to the common flags from the parent
@@ -21,8 +20,8 @@ TARGET := $(BUILD_DIR)/$(MODULE)
 all: $(TARGET)
 
 install:
-	install -d $(BIN_DIR)
-	install -D $(TARGET) $(BIN_DIR)/$(MODULE)
+	install -d $(PREFIX)
+	install -D $(TARGET) $(PREFIX)/$(MODULE)
 
 # Build the executable from object files
 $(TARGET): $(OBJS) | $(BUILD_DIR)

@@ -1,27 +1,32 @@
 # Common build directories and variables
-BUILD_DIR := .build
-BIN_DIR := .out
+PREFIX ?=
+BUILD_DIR ?= build
 
-CC := gcc
+CC ?= cc
 COMMON_CFLAGS := -Wall
-COMMON_LDFLAGS :=
+COMMON_LDFLAGS := -static
 
 # List of subdirectories (modules) to build
-SUBDIRS := true
+SUBDIRS := init true
 
 # Default target: build all subdirectories
 all: $(SUBDIRS)
 
 # For each subdirectory, invoke its Makefile, passing the build directories and flags
 $(SUBDIRS):
-	$(MAKE) -C $@ BUILD_DIR=$(abspath $(BUILD_DIR)/$@) BIN_DIR=$(abspath $(BIN_DIR)) \
+	$(MAKE) -C $@ BUILD_DIR=$(abspath $(BUILD_DIR)/$@) \
 	        CC=$(CC) CFLAGS="$(COMMON_CFLAGS)" LDFLAGS="$(COMMON_LDFLAGS)"
+
+install:
+	@for dir in $(SUBDIRS); do \
+		$(MAKE) -C $$dir install BUILD_DIR=$(abspath $(BUILD_DIR)/$$dir) PREFIX=$(abspath $(PREFIX)); \
+	done
 
 # Clean all subdirectories
 clean:
 	@for dir in $(SUBDIRS); do \
 		$(MAKE) -C $$dir clean BUILD_DIR=$(abspath $(BUILD_DIR)/$$dir); \
 	done
-	rm -rf $(BUILD_DIR) $(BIN_DIR)
+	rm -rf $(BUILD_DIR)
 
-.PHONY: all clean $(SUBDIRS)
+.PHONY: all install clean $(SUBDIRS)
