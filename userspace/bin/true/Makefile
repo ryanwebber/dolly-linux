@@ -3,7 +3,7 @@ SRC_DIR := src
 INCLUDE_DIR :=
 
 TOOLCHAIN ?=
-CC ?= $(TOOLCHAIN)gcc
+CC := $(TOOLCHAIN)gcc
 
 PREFIX ?=
 INSTALL_BIN_DIR ?= $(PREFIX)/usr/bin

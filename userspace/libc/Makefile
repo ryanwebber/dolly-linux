@@ -4,7 +4,7 @@ INCLUDE_DIR := include
 
 TOOLCHAIN ?=
 CC := $(TOOLCHAIN)gcc
-ASM := $(TOOLCHAIN)as
+AS := $(TOOLCHAIN)as
 AR := $(TOOLCHAIN)ar
 LD := $(TOOLCHAIN)ld
 
@@ -15,6 +15,7 @@ BUILD_DIR ?= build
 
 # Append module-specific flags to the common flags from the parent
 CFLAGS += -I$(INCLUDE_DIR)
+ASMFLAGS += -msyntax=intel -mnaked-reg
 LDFLAGS +=
 
 # Source files and object files
@@ -47,7 +48,7 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(BUILD_DIR)
 
 # Compile ASM source files into object files
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.asm | $(BUILD_DIR)
-	$(ASM) -c $< -o $@
+	$(AS) $(ASMFLAGS) -c $< -o $@
 
 # Create build directory if necessary
 $(BUILD_DIR):

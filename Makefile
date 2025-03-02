@@ -63,6 +63,7 @@ $(BUILD_DIR)/$(KERNEL_VERSION)/Makefile: $(BUILD_DIR)/$(KERNEL_VERSION).tar.xz
 	tar -xmf $(BUILD_DIR)/$(KERNEL_VERSION).tar.xz -C $(BUILD_DIR)
 
 $(BUILD_DIR)/$(KERNEL_VERSION).tar.xz:
+	@mkdir -p $(BUILD_DIR)/$(KERNEL_VERSION)
 	wget -O $(BUILD_DIR)/$(KERNEL_VERSION).tar.xz $(KERNEL_URL)
 
 .PHONY: all iso kernel dirs initramfs userspace

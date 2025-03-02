@@ -6,7 +6,7 @@ int main()
 
     while (1)
     {
-        write(1, "Hello world!\n", 12);
+        write(1, "Hello world!\n", 13);
         read(0, buffer, sizeof(buffer));
     }
 
