@@ -11,6 +11,7 @@ SUBDIRS := crt0 libc bin
 
 # Default target: build all subdirectories
 all: $(SUBDIRS)
+	@echo $(date) > $(BUILD_DIR)/userspace.txt
 
 # For each subdirectory, invoke its Makefile, passing the build directories and flags
 $(SUBDIRS):

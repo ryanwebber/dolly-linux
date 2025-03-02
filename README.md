@@ -2,7 +2,7 @@
 
 [![Build Image](https://github.com/ryanwebber/wuso-linux/actions/workflows/docker-image.yml/badge.svg)](https://github.com/ryanwebber/wuso-linux/actions/workflows/docker-image.yml)
 
-A small x86_64 linux userspace from scratch, for educational purposes.
+A toy x86_64 linux userspace made from scratch, as a learning exercise.
 
 ## Plan
 
@@ -12,7 +12,7 @@ A small x86_64 linux userspace from scratch, for educational purposes.
  - [x] Package and build a bootable disk image
  - [x] Build a libc and libc runtime
  - [x] Statically link binaries with our own libc
- - [ ] Iterate on libc, and core utilities
+ - [ ] "Complete" libc and core utils
  - [ ] Try and port some simple software
  - [ ] Build an x-server implementation
  - [ ] Port build scripts to Nix?

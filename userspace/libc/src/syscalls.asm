@@ -1488,6 +1488,7 @@ __syscall$kexec_load:
 
 __syscall$waitid:
     mov rax, 247
+    mov r10, rcx
     syscall
     ret
 

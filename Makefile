@@ -19,6 +19,8 @@ ISO_TARGET := $(BUILD_DIR)/$(ARCH)-linux-wuso.iso
 BOOT_FILES := $(BUILD_DIR)/iso-root
 INITRAMFS := $(BUILD_DIR)/initramfs.cpio
 
+USERSPACE_ARTIFACT := $(BUILD_DIR)/userspace/userspace.txt
+
 # Default target: build all subdirectories
 all: $(ISO_TARGET)
 
@@ -32,7 +34,9 @@ initramfs: $(INITRAMFS)
 
 kernel: $(KERNEL_IMAGE)
 
-userspace:
+userspace: $(USERSPACE_ARTIFACT)
+
+$(USERSPACE_ARTIFACT):
 	$(MAKE) -C userspace TOOLCHAIN=$(TOOLCHAIN) BUILD_DIR=$(abspath $(BUILD_DIR))/userspace
 
 $(ISO_TARGET): $(KERNEL_IMAGE) $(INITRAMFS)
@@ -48,7 +52,7 @@ $(ISO_TARGET): $(KERNEL_IMAGE) $(INITRAMFS)
 	genisoimage -o $(ISO_TARGET) -b boot/syslinux/isolinux.bin -c boot/syslinux/boot.cat -J -r -no-emul-boot -boot-load-size 4 -boot-info-table $(BOOT_FILES)
 	@echo "Bootable ISO built to $(ISO_TARGET)"
 
-$(INITRAMFS): userspace
+$(INITRAMFS): $(USERSPACE_ARTIFACT)
 	@mkdir -p $(BUILD_DIR)/initramfs
 	$(MAKE) -C userspace install CC=$(CC) BUILD_DIR=$(abspath $(BUILD_DIR))/userspace PREFIX=$(abspath $(BUILD_DIR)/initramfs)
 	cd $(BUILD_DIR)/initramfs && find . | cpio -H newc -o > $(abspath $(INITRAMFS))
@@ -66,4 +70,4 @@ $(BUILD_DIR)/$(KERNEL_VERSION).tar.xz:
 	@mkdir -p $(BUILD_DIR)/$(KERNEL_VERSION)
 	wget -O $(BUILD_DIR)/$(KERNEL_VERSION).tar.xz $(KERNEL_URL)
 
-.PHONY: all iso kernel dirs initramfs userspace
+.PHONY: all iso kernel dirs initramfs userspace $(USERSPACE_ARTIFACT)
