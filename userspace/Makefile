@@ -7,7 +7,7 @@ TOOLCHAIN ?=
 COMMON_CFLAGS := -Wall
 COMMON_LDFLAGS :=
 
-SUBDIRS := bin
+SUBDIRS := bin libc
 
 # Default target: build all subdirectories
 all: $(SUBDIRS)
