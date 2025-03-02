@@ -1,7 +1,5 @@
 #include <unistd.h>
 
-void exit();
-
 int main()
 {
     char buffer[256];
@@ -12,6 +10,5 @@ int main()
         read(0, buffer, sizeof(buffer));
     }
 
-    exit(0);
     return 0;
 }

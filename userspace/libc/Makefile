@@ -14,9 +14,8 @@ INSTALL_INCLUDE_DIR ?= $(PREFIX)/usr/include
 BUILD_DIR ?= build
 
 # Append module-specific flags to the common flags from the parent
-CFLAGS += -I$(INCLUDE_DIR)
+CFLAGS += -I$(INCLUDE_DIR) -I$(SRC_DIR) -nostdinc  -Wall -Wextra -Werror -Os -fno-ident -fno-asynchronous-unwind-tables -fno-stack-protector -fomit-frame-pointer
 ASMFLAGS += -msyntax=intel -mnaked-reg
-LDFLAGS +=
 
 # Source files and object files
 SRCS_C := $(wildcard $(SRC_DIR)/*.c)

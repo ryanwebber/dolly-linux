@@ -39,6 +39,9 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN mkdir -p /home/wuso
 WORKDIR /home/wuso
 
+# Set the build dir
+ENV BUILD_DIR=/distbuild
+
 # Copy the necessary files to build the kernel
 COPY scripts /home/wuso/scripts
 COPY Makefile /home/wuso/Makefile
@@ -55,7 +58,7 @@ COPY config /home/wuso/config
 COPY userspace /home/wuso/userspace
 
 # Build the distro
-RUN make -C /home/wuso BUILD_DIR=/distbuild
+RUN make -C /home/wuso
 
 # Keep the container running
 CMD ["/bin/bash"]

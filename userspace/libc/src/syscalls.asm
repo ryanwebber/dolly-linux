@@ -1,2147 +1,2147 @@
-.global read
-.global write
-.global open
-.global close
-.global newstat
-.global newfstat
-.global newlstat
-.global poll
-.global lseek
-.global mmap
-.global mprotect
-.global munmap
-.global brk
-.global rt_sigaction
-.global rt_sigprocmask
-.global rt_sigreturn
-.global ioctl
-.global pread64
-.global pwrite64
-.global readv
-.global writev
-.global access
-.global pipe
-.global select
-.global sched_yield
-.global mremap
-.global msync
-.global mincore
-.global madvise
-.global shmget
-.global shmat
-.global shmctl
-.global dup
-.global dup2
-.global pause
-.global nanosleep
-.global getitimer
-.global alarm
-.global setitimer
-.global getpid
-.global sendfile64
-.global socket
-.global connect
-.global accept
-.global sendto
-.global recvfrom
-.global sendmsg
-.global recvmsg
-.global shutdown
-.global bind
-.global listen
-.global getsockname
-.global getpeername
-.global socketpair
-.global setsockopt
-.global getsockopt
-.global clone
-.global fork
-.global vfork
-.global execve
-.global exit
-.global wait4
-.global kill
-.global newuname
-.global semget
-.global semop
-.global semctl
-.global shmdt
-.global msgget
-.global msgsnd
-.global msgrcv
-.global msgctl
-.global fcntl
-.global flock
-.global fsync
-.global fdatasync
-.global truncate
-.global ftruncate
-.global getdents
-.global getcwd
-.global chdir
-.global fchdir
-.global rename
-.global mkdir
-.global rmdir
-.global creat
-.global link
-.global unlink
-.global symlink
-.global readlink
-.global chmod
-.global fchmod
-.global chown
-.global fchown
-.global lchown
-.global umask
-.global gettimeofday
-.global getrlimit
-.global getrusage
-.global sysinfo
-.global times
-.global ptrace
-.global getuid
-.global syslog
-.global getgid
-.global setuid
-.global setgid
-.global geteuid
-.global getegid
-.global setpgid
-.global getppid
-.global getpgrp
-.global setsid
-.global setreuid
-.global setregid
-.global getgroups
-.global setgroups
-.global setresuid
-.global getresuid
-.global setresgid
-.global getresgid
-.global getpgid
-.global setfsuid
-.global setfsgid
-.global getsid
-.global capget
-.global capset
-.global rt_sigpending
-.global rt_sigtimedwait
-.global rt_sigqueueinfo
-.global rt_sigsuspend
-.global sigaltstack
-.global utime
-.global mknod
-.global fstatfs
-.global sysfs
-.global getpriority
-.global setpriority
-.global sched_setparam
-.global sched_getparam
-.global sched_setscheduler
-.global sched_getscheduler
-.global sched_get_priority_max
-.global sched_get_priority_min
-.global sched_rr_get_interval
-.global mlock
-.global munlock
-.global mlockall
-.global munlockall
-.global vhangup
-.global modify_ldt
-.global pivot_root
-.global setrlimit
-.global chroot
-.global sync
-.global acct
-.global settimeofday
-.global mount
-.global umount
-.global swapon
-.global swapoff
-.global reboot
-.global sethostname
-.global setdomainname
-.global iopl
-.global ioperm
-.global lsetxattr
-.global fsetxattr
-.global getxattr
-.global lgetxattr
-.global fgetxattr
-.global listxattr
-.global llistxattr
-.global flistxattr
-.global removexattr
-.global lremovexattr
-.global fremovexattr
-.global tkill
-.global time
-.global futex
-.global sched_setaffinity
-.global sched_getaffinity
-.global io_submit
-.global io_cancel
-.global restart_syscall
-.global semtimedop
-.global fadvise64
-.global timer_create
-.global timer_settime
-.global timer_gettime
-.global timer_getoverrun
-.global timer_delete
-.global clock_settime
-.global clock_gettime
-.global clock_getres
-.global clock_nanosleep
-.global exit_group
-.global epoll_wait
-.global epoll_ctl
-.global tgkill
-.global utimes
-.global mq_open
-.global mq_unlink
-.global mq_timedsend
-.global mq_timedreceive
-.global mq_notify
-.global mq_getsetattr
-.global kexec_load
-.global waitid
-.global add_key
-.global request_key
-.global keyctl
-.global ioprio_set
-.global ioprio_get
-.global inotify_init
-.global inotify_add_watch
-.global inotify_rm_watch
-.global migrate_pages
-.global openat
-.global mkdirat
-.global mknodat
-.global fchownat
-.global futimesat
-.global newfstatat
-.global unlinkat
-.global renameat
-.global linkat
-.global symlinkat
-.global readlinkat
-.global fchmodat
-.global faccessat
-.global pselect6
-.global ppoll
-.global unshare
-.global set_robust_list
-.global get_robust_list
-.global splice
-.global tee
-.global sync_file_range
-.global vmsplice
-.global move_pages
-.global utimensat
-.global epoll_pwait
-.global signalfd
-.global timerfd_create
-.global eventfd
-.global fallocate
-.global timerfd_settime
-.global timerfd_gettime
-.global accept4
-.global signalfd4
-.global eventfd2
-.global epoll_create1
-.global dup3
-.global pipe2
-.global inotify_init1
-.global preadv
-.global pwritev
-.global rt_tgsigqueueinfo
-.global perf_event_open
-.global recvmmsg
-.global fanotify_init
-.global fanotify_mark
-.global prlimit64
-.global name_to_handle_at
-.global open_by_handle_at
-.global clock_adjtime
-.global syncfs
-.global sendmmsg
-.global setns
-.global getcpu
-.global process_vm_readv
-.global process_vm_writev
-.global kcmp
-.global finit_module
-.global sched_setattr
-.global sched_getattr
-.global renameat2
-.global seccomp
-.global getrandom
-.global memfd_create
-.global kexec_file_load
-.global bpf
-.global execveat
-.global userfaultfd
-.global membarrier
-.global mlock2
-.global copy_file_range
-.global preadv2
-.global pwritev2
-.global pkey_mprotect
-.global pkey_alloc
-.global pkey_free
-.global statx
-.global io_pgetevents
-.global rseq
-.global uretprobe
-.global io_uring_register
-.global open_tree
-.global move_mount
-.global fsopen
-.global fsconfig
-.global fsmount
-.global fspick
-.global pidfd_open
-.global clone3
-.global close_range
-.global openat2
-.global pidfd_getfd
-.global faccessat2
-.global process_madvise
-.global epoll_pwait2
-.global mount_setattr
-.global quotactl_fd
-.global landlock_create_ruleset
-.global landlock_add_rule
-.global landlock_restrict_self
-.global memfd_secret
-.global process_mrelease
-.global futex_waitv
-.global set_mempolicy_home_node
-.global cachestat
-.global fchmodat2
-.global map_shadow_stack
-.global futex_wake
-.global futex_wait
-.global futex_requeue
-.global statmount
-.global listmount
-.global lsm_get_self_attr
-.global lsm_set_self_attr
-.global lsm_list_modules
-.global mseal
-.global setxattrat
-.global getxattrat
-.global listxattrat
-.global removexattrat
+.global __syscall$read
+.global __syscall$write
+.global __syscall$open
+.global __syscall$close
+.global __syscall$newstat
+.global __syscall$newfstat
+.global __syscall$newlstat
+.global __syscall$poll
+.global __syscall$lseek
+.global __syscall$mmap
+.global __syscall$mprotect
+.global __syscall$munmap
+.global __syscall$brk
+.global __syscall$rt_sigaction
+.global __syscall$rt_sigprocmask
+.global __syscall$rt_sigreturn
+.global __syscall$ioctl
+.global __syscall$pread64
+.global __syscall$pwrite64
+.global __syscall$readv
+.global __syscall$writev
+.global __syscall$access
+.global __syscall$pipe
+.global __syscall$select
+.global __syscall$sched_yield
+.global __syscall$mremap
+.global __syscall$msync
+.global __syscall$mincore
+.global __syscall$madvise
+.global __syscall$shmget
+.global __syscall$shmat
+.global __syscall$shmctl
+.global __syscall$dup
+.global __syscall$dup2
+.global __syscall$pause
+.global __syscall$nanosleep
+.global __syscall$getitimer
+.global __syscall$alarm
+.global __syscall$setitimer
+.global __syscall$getpid
+.global __syscall$sendfile64
+.global __syscall$socket
+.global __syscall$connect
+.global __syscall$accept
+.global __syscall$sendto
+.global __syscall$recvfrom
+.global __syscall$sendmsg
+.global __syscall$recvmsg
+.global __syscall$shutdown
+.global __syscall$bind
+.global __syscall$listen
+.global __syscall$getsockname
+.global __syscall$getpeername
+.global __syscall$socketpair
+.global __syscall$setsockopt
+.global __syscall$getsockopt
+.global __syscall$clone
+.global __syscall$fork
+.global __syscall$vfork
+.global __syscall$execve
+.global __syscall$exit
+.global __syscall$wait4
+.global __syscall$kill
+.global __syscall$newuname
+.global __syscall$semget
+.global __syscall$semop
+.global __syscall$semctl
+.global __syscall$shmdt
+.global __syscall$msgget
+.global __syscall$msgsnd
+.global __syscall$msgrcv
+.global __syscall$msgctl
+.global __syscall$fcntl
+.global __syscall$flock
+.global __syscall$fsync
+.global __syscall$fdatasync
+.global __syscall$truncate
+.global __syscall$ftruncate
+.global __syscall$getdents
+.global __syscall$getcwd
+.global __syscall$chdir
+.global __syscall$fchdir
+.global __syscall$rename
+.global __syscall$mkdir
+.global __syscall$rmdir
+.global __syscall$creat
+.global __syscall$link
+.global __syscall$unlink
+.global __syscall$symlink
+.global __syscall$readlink
+.global __syscall$chmod
+.global __syscall$fchmod
+.global __syscall$chown
+.global __syscall$fchown
+.global __syscall$lchown
+.global __syscall$umask
+.global __syscall$gettimeofday
+.global __syscall$getrlimit
+.global __syscall$getrusage
+.global __syscall$sysinfo
+.global __syscall$times
+.global __syscall$ptrace
+.global __syscall$getuid
+.global __syscall$syslog
+.global __syscall$getgid
+.global __syscall$setuid
+.global __syscall$setgid
+.global __syscall$geteuid
+.global __syscall$getegid
+.global __syscall$setpgid
+.global __syscall$getppid
+.global __syscall$getpgrp
+.global __syscall$setsid
+.global __syscall$setreuid
+.global __syscall$setregid
+.global __syscall$getgroups
+.global __syscall$setgroups
+.global __syscall$setresuid
+.global __syscall$getresuid
+.global __syscall$setresgid
+.global __syscall$getresgid
+.global __syscall$getpgid
+.global __syscall$setfsuid
+.global __syscall$setfsgid
+.global __syscall$getsid
+.global __syscall$capget
+.global __syscall$capset
+.global __syscall$rt_sigpending
+.global __syscall$rt_sigtimedwait
+.global __syscall$rt_sigqueueinfo
+.global __syscall$rt_sigsuspend
+.global __syscall$sigaltstack
+.global __syscall$utime
+.global __syscall$mknod
+.global __syscall$fstatfs
+.global __syscall$sysfs
+.global __syscall$getpriority
+.global __syscall$setpriority
+.global __syscall$sched_setparam
+.global __syscall$sched_getparam
+.global __syscall$sched_setscheduler
+.global __syscall$sched_getscheduler
+.global __syscall$sched_get_priority_max
+.global __syscall$sched_get_priority_min
+.global __syscall$sched_rr_get_interval
+.global __syscall$mlock
+.global __syscall$munlock
+.global __syscall$mlockall
+.global __syscall$munlockall
+.global __syscall$vhangup
+.global __syscall$modify_ldt
+.global __syscall$pivot_root
+.global __syscall$setrlimit
+.global __syscall$chroot
+.global __syscall$sync
+.global __syscall$acct
+.global __syscall$settimeofday
+.global __syscall$mount
+.global __syscall$umount
+.global __syscall$swapon
+.global __syscall$swapoff
+.global __syscall$reboot
+.global __syscall$sethostname
+.global __syscall$setdomainname
+.global __syscall$iopl
+.global __syscall$ioperm
+.global __syscall$lsetxattr
+.global __syscall$fsetxattr
+.global __syscall$getxattr
+.global __syscall$lgetxattr
+.global __syscall$fgetxattr
+.global __syscall$listxattr
+.global __syscall$llistxattr
+.global __syscall$flistxattr
+.global __syscall$removexattr
+.global __syscall$lremovexattr
+.global __syscall$fremovexattr
+.global __syscall$tkill
+.global __syscall$time
+.global __syscall$futex
+.global __syscall$sched_setaffinity
+.global __syscall$sched_getaffinity
+.global __syscall$io_submit
+.global __syscall$io_cancel
+.global __syscall$restart_syscall
+.global __syscall$semtimedop
+.global __syscall$fadvise64
+.global __syscall$timer_create
+.global __syscall$timer_settime
+.global __syscall$timer_gettime
+.global __syscall$timer_getoverrun
+.global __syscall$timer_delete
+.global __syscall$clock_settime
+.global __syscall$clock_gettime
+.global __syscall$clock_getres
+.global __syscall$clock_nanosleep
+.global __syscall$exit_group
+.global __syscall$epoll_wait
+.global __syscall$epoll_ctl
+.global __syscall$tgkill
+.global __syscall$utimes
+.global __syscall$mq_open
+.global __syscall$mq_unlink
+.global __syscall$mq_timedsend
+.global __syscall$mq_timedreceive
+.global __syscall$mq_notify
+.global __syscall$mq_getsetattr
+.global __syscall$kexec_load
+.global __syscall$waitid
+.global __syscall$add_key
+.global __syscall$request_key
+.global __syscall$keyctl
+.global __syscall$ioprio_set
+.global __syscall$ioprio_get
+.global __syscall$inotify_init
+.global __syscall$inotify_add_watch
+.global __syscall$inotify_rm_watch
+.global __syscall$migrate_pages
+.global __syscall$openat
+.global __syscall$mkdirat
+.global __syscall$mknodat
+.global __syscall$fchownat
+.global __syscall$futimesat
+.global __syscall$newfstatat
+.global __syscall$unlinkat
+.global __syscall$renameat
+.global __syscall$linkat
+.global __syscall$symlinkat
+.global __syscall$readlinkat
+.global __syscall$fchmodat
+.global __syscall$faccessat
+.global __syscall$pselect6
+.global __syscall$ppoll
+.global __syscall$unshare
+.global __syscall$set_robust_list
+.global __syscall$get_robust_list
+.global __syscall$splice
+.global __syscall$tee
+.global __syscall$sync_file_range
+.global __syscall$vmsplice
+.global __syscall$move_pages
+.global __syscall$utimensat
+.global __syscall$epoll_pwait
+.global __syscall$signalfd
+.global __syscall$timerfd_create
+.global __syscall$eventfd
+.global __syscall$fallocate
+.global __syscall$timerfd_settime
+.global __syscall$timerfd_gettime
+.global __syscall$accept4
+.global __syscall$signalfd4
+.global __syscall$eventfd2
+.global __syscall$epoll_create1
+.global __syscall$dup3
+.global __syscall$pipe2
+.global __syscall$inotify_init1
+.global __syscall$preadv
+.global __syscall$pwritev
+.global __syscall$rt_tgsigqueueinfo
+.global __syscall$perf_event_open
+.global __syscall$recvmmsg
+.global __syscall$fanotify_init
+.global __syscall$fanotify_mark
+.global __syscall$prlimit64
+.global __syscall$name_to_handle_at
+.global __syscall$open_by_handle_at
+.global __syscall$clock_adjtime
+.global __syscall$syncfs
+.global __syscall$sendmmsg
+.global __syscall$setns
+.global __syscall$getcpu
+.global __syscall$process_vm_readv
+.global __syscall$process_vm_writev
+.global __syscall$kcmp
+.global __syscall$finit_module
+.global __syscall$sched_setattr
+.global __syscall$sched_getattr
+.global __syscall$renameat2
+.global __syscall$seccomp
+.global __syscall$getrandom
+.global __syscall$memfd_create
+.global __syscall$kexec_file_load
+.global __syscall$bpf
+.global __syscall$execveat
+.global __syscall$userfaultfd
+.global __syscall$membarrier
+.global __syscall$mlock2
+.global __syscall$copy_file_range
+.global __syscall$preadv2
+.global __syscall$pwritev2
+.global __syscall$pkey_mprotect
+.global __syscall$pkey_alloc
+.global __syscall$pkey_free
+.global __syscall$statx
+.global __syscall$io_pgetevents
+.global __syscall$rseq
+.global __syscall$uretprobe
+.global __syscall$io_uring_register
+.global __syscall$open_tree
+.global __syscall$move_mount
+.global __syscall$fsopen
+.global __syscall$fsconfig
+.global __syscall$fsmount
+.global __syscall$fspick
+.global __syscall$pidfd_open
+.global __syscall$clone3
+.global __syscall$close_range
+.global __syscall$openat2
+.global __syscall$pidfd_getfd
+.global __syscall$faccessat2
+.global __syscall$process_madvise
+.global __syscall$epoll_pwait2
+.global __syscall$mount_setattr
+.global __syscall$quotactl_fd
+.global __syscall$landlock_create_ruleset
+.global __syscall$landlock_add_rule
+.global __syscall$landlock_restrict_self
+.global __syscall$memfd_secret
+.global __syscall$process_mrelease
+.global __syscall$futex_waitv
+.global __syscall$set_mempolicy_home_node
+.global __syscall$cachestat
+.global __syscall$fchmodat2
+.global __syscall$map_shadow_stack
+.global __syscall$futex_wake
+.global __syscall$futex_wait
+.global __syscall$futex_requeue
+.global __syscall$statmount
+.global __syscall$listmount
+.global __syscall$lsm_get_self_attr
+.global __syscall$lsm_set_self_attr
+.global __syscall$lsm_list_modules
+.global __syscall$mseal
+.global __syscall$setxattrat
+.global __syscall$getxattrat
+.global __syscall$listxattrat
+.global __syscall$removexattrat
 
-read:
+__syscall$read:
     mov rax, 0
     syscall
     ret
 
-write:
+__syscall$write:
     mov rax, 1
     syscall
     ret
 
-open:
+__syscall$open:
     mov rax, 2
     syscall
     ret
 
-close:
+__syscall$close:
     mov rax, 3
     syscall
     ret
 
-newstat:
+__syscall$newstat:
     mov rax, 4
     syscall
     ret
 
-newfstat:
+__syscall$newfstat:
     mov rax, 5
     syscall
     ret
 
-newlstat:
+__syscall$newlstat:
     mov rax, 6
     syscall
     ret
 
-poll:
+__syscall$poll:
     mov rax, 7
     syscall
     ret
 
-lseek:
+__syscall$lseek:
     mov rax, 8
     syscall
     ret
 
-mmap:
+__syscall$mmap:
     mov rax, 9
     syscall
     ret
 
-mprotect:
+__syscall$mprotect:
     mov rax, 10
     syscall
     ret
 
-munmap:
+__syscall$munmap:
     mov rax, 11
     syscall
     ret
 
-brk:
+__syscall$brk:
     mov rax, 12
     syscall
     ret
 
-rt_sigaction:
+__syscall$rt_sigaction:
     mov rax, 13
     syscall
     ret
 
-rt_sigprocmask:
+__syscall$rt_sigprocmask:
     mov rax, 14
     syscall
     ret
 
-rt_sigreturn:
+__syscall$rt_sigreturn:
     mov rax, 15
     syscall
     ret
 
-ioctl:
+__syscall$ioctl:
     mov rax, 16
     syscall
     ret
 
-pread64:
+__syscall$pread64:
     mov rax, 17
     syscall
     ret
 
-pwrite64:
+__syscall$pwrite64:
     mov rax, 18
     syscall
     ret
 
-readv:
+__syscall$readv:
     mov rax, 19
     syscall
     ret
 
-writev:
+__syscall$writev:
     mov rax, 20
     syscall
     ret
 
-access:
+__syscall$access:
     mov rax, 21
     syscall
     ret
 
-pipe:
+__syscall$pipe:
     mov rax, 22
     syscall
     ret
 
-select:
+__syscall$select:
     mov rax, 23
     syscall
     ret
 
-sched_yield:
+__syscall$sched_yield:
     mov rax, 24
     syscall
     ret
 
-mremap:
+__syscall$mremap:
     mov rax, 25
     syscall
     ret
 
-msync:
+__syscall$msync:
     mov rax, 26
     syscall
     ret
 
-mincore:
+__syscall$mincore:
     mov rax, 27
     syscall
     ret
 
-madvise:
+__syscall$madvise:
     mov rax, 28
     syscall
     ret
 
-shmget:
+__syscall$shmget:
     mov rax, 29
     syscall
     ret
 
-shmat:
+__syscall$shmat:
     mov rax, 30
     syscall
     ret
 
-shmctl:
+__syscall$shmctl:
     mov rax, 31
     syscall
     ret
 
-dup:
+__syscall$dup:
     mov rax, 32
     syscall
     ret
 
-dup2:
+__syscall$dup2:
     mov rax, 33
     syscall
     ret
 
-pause:
+__syscall$pause:
     mov rax, 34
     syscall
     ret
 
-nanosleep:
+__syscall$nanosleep:
     mov rax, 35
     syscall
     ret
 
-getitimer:
+__syscall$getitimer:
     mov rax, 36
     syscall
     ret
 
-alarm:
+__syscall$alarm:
     mov rax, 37
     syscall
     ret
 
-setitimer:
+__syscall$setitimer:
     mov rax, 38
     syscall
     ret
 
-getpid:
+__syscall$getpid:
     mov rax, 39
     syscall
     ret
 
-sendfile64:
+__syscall$sendfile64:
     mov rax, 40
     syscall
     ret
 
-socket:
+__syscall$socket:
     mov rax, 41
     syscall
     ret
 
-connect:
+__syscall$connect:
     mov rax, 42
     syscall
     ret
 
-accept:
+__syscall$accept:
     mov rax, 43
     syscall
     ret
 
-sendto:
+__syscall$sendto:
     mov rax, 44
     syscall
     ret
 
-recvfrom:
+__syscall$recvfrom:
     mov rax, 45
     syscall
     ret
 
-sendmsg:
+__syscall$sendmsg:
     mov rax, 46
     syscall
     ret
 
-recvmsg:
+__syscall$recvmsg:
     mov rax, 47
     syscall
     ret
 
-shutdown:
+__syscall$shutdown:
     mov rax, 48
     syscall
     ret
 
-bind:
+__syscall$bind:
     mov rax, 49
     syscall
     ret
 
-listen:
+__syscall$listen:
     mov rax, 50
     syscall
     ret
 
-getsockname:
+__syscall$getsockname:
     mov rax, 51
     syscall
     ret
 
-getpeername:
+__syscall$getpeername:
     mov rax, 52
     syscall
     ret
 
-socketpair:
+__syscall$socketpair:
     mov rax, 53
     syscall
     ret
 
-setsockopt:
+__syscall$setsockopt:
     mov rax, 54
     syscall
     ret
 
-getsockopt:
+__syscall$getsockopt:
     mov rax, 55
     syscall
     ret
 
-clone:
+__syscall$clone:
     mov rax, 56
     syscall
     ret
 
-fork:
+__syscall$fork:
     mov rax, 57
     syscall
     ret
 
-vfork:
+__syscall$vfork:
     mov rax, 58
     syscall
     ret
 
-execve:
+__syscall$execve:
     mov rax, 59
     syscall
     ret
 
-exit:
+__syscall$exit:
     mov rax, 60
     syscall
     ret
 
-wait4:
+__syscall$wait4:
     mov rax, 61
     syscall
     ret
 
-kill:
+__syscall$kill:
     mov rax, 62
     syscall
     ret
 
-newuname:
+__syscall$newuname:
     mov rax, 63
     syscall
     ret
 
-semget:
+__syscall$semget:
     mov rax, 64
     syscall
     ret
 
-semop:
+__syscall$semop:
     mov rax, 65
     syscall
     ret
 
-semctl:
+__syscall$semctl:
     mov rax, 66
     syscall
     ret
 
-shmdt:
+__syscall$shmdt:
     mov rax, 67
     syscall
     ret
 
-msgget:
+__syscall$msgget:
     mov rax, 68
     syscall
     ret
 
-msgsnd:
+__syscall$msgsnd:
     mov rax, 69
     syscall
     ret
 
-msgrcv:
+__syscall$msgrcv:
     mov rax, 70
     syscall
     ret
 
-msgctl:
+__syscall$msgctl:
     mov rax, 71
     syscall
     ret
 
-fcntl:
+__syscall$fcntl:
     mov rax, 72
     syscall
     ret
 
-flock:
+__syscall$flock:
     mov rax, 73
     syscall
     ret
 
-fsync:
+__syscall$fsync:
     mov rax, 74
     syscall
     ret
 
-fdatasync:
+__syscall$fdatasync:
     mov rax, 75
     syscall
     ret
 
-truncate:
+__syscall$truncate:
     mov rax, 76
     syscall
     ret
 
-ftruncate:
+__syscall$ftruncate:
     mov rax, 77
     syscall
     ret
 
-getdents:
+__syscall$getdents:
     mov rax, 78
     syscall
     ret
 
-getcwd:
+__syscall$getcwd:
     mov rax, 79
     syscall
     ret
 
-chdir:
+__syscall$chdir:
     mov rax, 80
     syscall
     ret
 
-fchdir:
+__syscall$fchdir:
     mov rax, 81
     syscall
     ret
 
-rename:
+__syscall$rename:
     mov rax, 82
     syscall
     ret
 
-mkdir:
+__syscall$mkdir:
     mov rax, 83
     syscall
     ret
 
-rmdir:
+__syscall$rmdir:
     mov rax, 84
     syscall
     ret
 
-creat:
+__syscall$creat:
     mov rax, 85
     syscall
     ret
 
-link:
+__syscall$link:
     mov rax, 86
     syscall
     ret
 
-unlink:
+__syscall$unlink:
     mov rax, 87
     syscall
     ret
 
-symlink:
+__syscall$symlink:
     mov rax, 88
     syscall
     ret
 
-readlink:
+__syscall$readlink:
     mov rax, 89
     syscall
     ret
 
-chmod:
+__syscall$chmod:
     mov rax, 90
     syscall
     ret
 
-fchmod:
+__syscall$fchmod:
     mov rax, 91
     syscall
     ret
 
-chown:
+__syscall$chown:
     mov rax, 92
     syscall
     ret
 
-fchown:
+__syscall$fchown:
     mov rax, 93
     syscall
     ret
 
-lchown:
+__syscall$lchown:
     mov rax, 94
     syscall
     ret
 
-umask:
+__syscall$umask:
     mov rax, 95
     syscall
     ret
 
-gettimeofday:
+__syscall$gettimeofday:
     mov rax, 96
     syscall
     ret
 
-getrlimit:
+__syscall$getrlimit:
     mov rax, 97
     syscall
     ret
 
-getrusage:
+__syscall$getrusage:
     mov rax, 98
     syscall
     ret
 
-sysinfo:
+__syscall$sysinfo:
     mov rax, 99
     syscall
     ret
 
-times:
+__syscall$times:
     mov rax, 100
     syscall
     ret
 
-ptrace:
+__syscall$ptrace:
     mov rax, 101
     syscall
     ret
 
-getuid:
+__syscall$getuid:
     mov rax, 102
     syscall
     ret
 
-syslog:
+__syscall$syslog:
     mov rax, 103
     syscall
     ret
 
-getgid:
+__syscall$getgid:
     mov rax, 104
     syscall
     ret
 
-setuid:
+__syscall$setuid:
     mov rax, 105
     syscall
     ret
 
-setgid:
+__syscall$setgid:
     mov rax, 106
     syscall
     ret
 
-geteuid:
+__syscall$geteuid:
     mov rax, 107
     syscall
     ret
 
-getegid:
+__syscall$getegid:
     mov rax, 108
     syscall
     ret
 
-setpgid:
+__syscall$setpgid:
     mov rax, 109
     syscall
     ret
 
-getppid:
+__syscall$getppid:
     mov rax, 110
     syscall
     ret
 
-getpgrp:
+__syscall$getpgrp:
     mov rax, 111
     syscall
     ret
 
-setsid:
+__syscall$setsid:
     mov rax, 112
     syscall
     ret
 
-setreuid:
+__syscall$setreuid:
     mov rax, 113
     syscall
     ret
 
-setregid:
+__syscall$setregid:
     mov rax, 114
     syscall
     ret
 
-getgroups:
+__syscall$getgroups:
     mov rax, 115
     syscall
     ret
 
-setgroups:
+__syscall$setgroups:
     mov rax, 116
     syscall
     ret
 
-setresuid:
+__syscall$setresuid:
     mov rax, 117
     syscall
     ret
 
-getresuid:
+__syscall$getresuid:
     mov rax, 118
     syscall
     ret
 
-setresgid:
+__syscall$setresgid:
     mov rax, 119
     syscall
     ret
 
-getresgid:
+__syscall$getresgid:
     mov rax, 120
     syscall
     ret
 
-getpgid:
+__syscall$getpgid:
     mov rax, 121
     syscall
     ret
 
-setfsuid:
+__syscall$setfsuid:
     mov rax, 122
     syscall
     ret
 
-setfsgid:
+__syscall$setfsgid:
     mov rax, 123
     syscall
     ret
 
-getsid:
+__syscall$getsid:
     mov rax, 124
     syscall
     ret
 
-capget:
+__syscall$capget:
     mov rax, 125
     syscall
     ret
 
-capset:
+__syscall$capset:
     mov rax, 126
     syscall
     ret
 
-rt_sigpending:
+__syscall$rt_sigpending:
     mov rax, 127
     syscall
     ret
 
-rt_sigtimedwait:
+__syscall$rt_sigtimedwait:
     mov rax, 128
     syscall
     ret
 
-rt_sigqueueinfo:
+__syscall$rt_sigqueueinfo:
     mov rax, 129
     syscall
     ret
 
-rt_sigsuspend:
+__syscall$rt_sigsuspend:
     mov rax, 130
     syscall
     ret
 
-sigaltstack:
+__syscall$sigaltstack:
     mov rax, 131
     syscall
     ret
 
-utime:
+__syscall$utime:
     mov rax, 132
     syscall
     ret
 
-mknod:
+__syscall$mknod:
     mov rax, 133
     syscall
     ret
 
-personality:
+__syscall$personality:
     mov rax, 135
     syscall
     ret
 
-ustat:
+__syscall$ustat:
     mov rax, 136
     syscall
     ret
 
-statfs:
+__syscall$statfs:
     mov rax, 137
     syscall
     ret
 
-fstatfs:
+__syscall$fstatfs:
     mov rax, 138
     syscall
     ret
 
-sysfs:
+__syscall$sysfs:
     mov rax, 139
     syscall
     ret
 
-getpriority:
+__syscall$getpriority:
     mov rax, 140
     syscall
     ret
 
-setpriority:
+__syscall$setpriority:
     mov rax, 141
     syscall
     ret
 
-sched_setparam:
+__syscall$sched_setparam:
     mov rax, 142
     syscall
     ret
 
-sched_getparam:
+__syscall$sched_getparam:
     mov rax, 143
     syscall
     ret
 
-sched_setscheduler:
+__syscall$sched_setscheduler:
     mov rax, 144
     syscall
     ret
 
-sched_getscheduler:
+__syscall$sched_getscheduler:
     mov rax, 145
     syscall
     ret
 
-sched_get_priority_max:
+__syscall$sched_get_priority_max:
     mov rax, 146
     syscall
     ret
 
-sched_get_priority_min:
+__syscall$sched_get_priority_min:
     mov rax, 147
     syscall
     ret
 
-sched_rr_get_interval:
+__syscall$sched_rr_get_interval:
     mov rax, 148
     syscall
     ret
 
-mlock:
+__syscall$mlock:
     mov rax, 149
     syscall
     ret
 
-munlock:
+__syscall$munlock:
     mov rax, 150
     syscall
     ret
 
-mlockall:
+__syscall$mlockall:
     mov rax, 151
     syscall
     ret
 
-munlockall:
+__syscall$munlockall:
     mov rax, 152
     syscall
     ret
 
-vhangup:
+__syscall$vhangup:
     mov rax, 153
     syscall
     ret
 
-modify_ldt:
+__syscall$modify_ldt:
     mov rax, 154
     syscall
     ret
 
-pivot_root:
+__syscall$pivot_root:
     mov rax, 155
     syscall
     ret
 
-prctl:
+__syscall$prctl:
     mov rax, 157
     syscall
     ret
 
-arch_prctl:
+__syscall$arch_prctl:
     mov rax, 158
     syscall
     ret
 
-adjtimex:
+__syscall$adjtimex:
     mov rax, 159
     syscall
     ret
 
-setrlimit:
+__syscall$setrlimit:
     mov rax, 160
     syscall
     ret
 
-chroot:
+__syscall$chroot:
     mov rax, 161
     syscall
     ret
 
-sync:
+__syscall$sync:
     mov rax, 162
     syscall
     ret
 
-acct:
+__syscall$acct:
     mov rax, 163
     syscall
     ret
 
-settimeofday:
+__syscall$settimeofday:
     mov rax, 164
     syscall
     ret
 
-mount:
+__syscall$mount:
     mov rax, 165
     syscall
     ret
 
-umount:
+__syscall$umount:
     mov rax, 166
     syscall
     ret
 
-swapon:
+__syscall$swapon:
     mov rax, 167
     syscall
     ret
 
-swapoff:
+__syscall$swapoff:
     mov rax, 168
     syscall
     ret
 
-reboot:
+__syscall$reboot:
     mov rax, 169
     syscall
     ret
 
-sethostname:
+__syscall$sethostname:
     mov rax, 170
     syscall
     ret
 
-setdomainname:
+__syscall$setdomainname:
     mov rax, 171
     syscall
     ret
 
-iopl:
+__syscall$iopl:
     mov rax, 172
     syscall
     ret
 
-ioperm:
+__syscall$ioperm:
     mov rax, 173
     syscall
     ret
 
-init_module:
+__syscall$init_module:
     mov rax, 175
     syscall
     ret
 
-delete_module:
+__syscall$delete_module:
     mov rax, 176
     syscall
     ret
 
-quotactl:
+__syscall$quotactl:
     mov rax, 179
     syscall
     ret
 
-gettid:
+__syscall$gettid:
     mov rax, 186
     syscall
     ret
 
-readahead:
+__syscall$readahead:
     mov rax, 187
     syscall
     ret
 
-setxattr:
+__syscall$setxattr:
     mov rax, 188
     syscall
     ret
 
-lsetxattr:
+__syscall$lsetxattr:
     mov rax, 189
     syscall
     ret
 
-fsetxattr:
+__syscall$fsetxattr:
     mov rax, 190
     syscall
     ret
 
-getxattr:
+__syscall$getxattr:
     mov rax, 191
     syscall
     ret
 
-lgetxattr:
+__syscall$lgetxattr:
     mov rax, 192
     syscall
     ret
 
-fgetxattr:
+__syscall$fgetxattr:
     mov rax, 193
     syscall
     ret
 
-listxattr:
+__syscall$listxattr:
     mov rax, 194
     syscall
     ret
 
-llistxattr:
+__syscall$llistxattr:
     mov rax, 195
     syscall
     ret
 
-flistxattr:
+__syscall$flistxattr:
     mov rax, 196
     syscall
     ret
 
-removexattr:
+__syscall$removexattr:
     mov rax, 197
     syscall
     ret
 
-lremovexattr:
+__syscall$lremovexattr:
     mov rax, 198
     syscall
     ret
 
-fremovexattr:
+__syscall$fremovexattr:
     mov rax, 199
     syscall
     ret
 
-tkill:
+__syscall$tkill:
     mov rax, 200
     syscall
     ret
 
-time:
+__syscall$time:
     mov rax, 201
     syscall
     ret
 
-futex:
+__syscall$futex:
     mov rax, 202
     syscall
     ret
 
-sched_setaffinity:
+__syscall$sched_setaffinity:
     mov rax, 203
     syscall
     ret
 
-sched_getaffinity:
+__syscall$sched_getaffinity:
     mov rax, 204
     syscall
     ret
 
-io_setup:
+__syscall$io_setup:
     mov rax, 206
     syscall
     ret
 
-io_destroy:
+__syscall$io_destroy:
     mov rax, 207
     syscall
     ret
 
-io_getevents:
+__syscall$io_getevents:
     mov rax, 208
     syscall
     ret
 
-io_submit:
+__syscall$io_submit:
     mov rax, 209
     syscall
     ret
 
-io_cancel:
+__syscall$io_cancel:
     mov rax, 210
     syscall
     ret
 
-epoll_create:
+__syscall$epoll_create:
     mov rax, 213
     syscall
     ret
 
-remap_file_pages:
+__syscall$remap_file_pages:
     mov rax, 216
     syscall
     ret
 
-getdents64:
+__syscall$getdents64:
     mov rax, 217
     syscall
     ret
 
-set_tid_address:
+__syscall$set_tid_address:
     mov rax, 218
     syscall
     ret
 
-restart_syscall:
+__syscall$restart_syscall:
     mov rax, 219
     syscall
     ret
 
-semtimedop:
+__syscall$semtimedop:
     mov rax, 220
     syscall
     ret
 
-fadvise64:
+__syscall$fadvise64:
     mov rax, 221
     syscall
     ret
 
-timer_create:
+__syscall$timer_create:
     mov rax, 222
     syscall
     ret
 
-timer_settime:
+__syscall$timer_settime:
     mov rax, 223
     syscall
     ret
 
-timer_gettime:
+__syscall$timer_gettime:
     mov rax, 224
     syscall
     ret
 
-timer_getoverrun:
+__syscall$timer_getoverrun:
     mov rax, 225
     syscall
     ret
 
-timer_delete:
+__syscall$timer_delete:
     mov rax, 226
     syscall
     ret
 
-clock_settime:
+__syscall$clock_settime:
     mov rax, 227
     syscall
     ret
 
-clock_gettime:
+__syscall$clock_gettime:
     mov rax, 228
     syscall
     ret
 
-clock_getres:
+__syscall$clock_getres:
     mov rax, 229
     syscall
     ret
 
-clock_nanosleep:
+__syscall$clock_nanosleep:
     mov rax, 230
     syscall
     ret
 
-exit_group:
+__syscall$exit_group:
     mov rax, 231
     syscall
     ret
 
-epoll_wait:
+__syscall$epoll_wait:
     mov rax, 232
     syscall
     ret
 
-epoll_ctl:
+__syscall$epoll_ctl:
     mov rax, 233
     syscall
     ret
 
-tgkill:
+__syscall$tgkill:
     mov rax, 234
     syscall
     ret
 
-utimes:
+__syscall$utimes:
     mov rax, 235
     syscall
     ret
 
-mbind:
+__syscall$mbind:
     mov rax, 237
     syscall
     ret
 
-set_mempolicy:
+__syscall$set_mempolicy:
     mov rax, 238
     syscall
     ret
 
-get_mempolicy:
+__syscall$get_mempolicy:
     mov rax, 239
     syscall
     ret
 
-mq_open:
+__syscall$mq_open:
     mov rax, 240
     syscall
     ret
 
-mq_unlink:
+__syscall$mq_unlink:
     mov rax, 241
     syscall
     ret
 
-mq_timedsend:
+__syscall$mq_timedsend:
     mov rax, 242
     syscall
     ret
 
-mq_timedreceive:
+__syscall$mq_timedreceive:
     mov rax, 243
     syscall
     ret
 
-mq_notify:
+__syscall$mq_notify:
     mov rax, 244
     syscall
     ret
 
-mq_getsetattr:
+__syscall$mq_getsetattr:
     mov rax, 245
     syscall
     ret
 
-kexec_load:
+__syscall$kexec_load:
     mov rax, 246
     syscall
     ret
 
-waitid:
+__syscall$waitid:
     mov rax, 247
     syscall
     ret
 
-add_key:
+__syscall$add_key:
     mov rax, 248
     syscall
     ret
 
-request_key:
+__syscall$request_key:
     mov rax, 249
     syscall
     ret
 
-keyctl:
+__syscall$keyctl:
     mov rax, 250
     syscall
     ret
 
-ioprio_set:
+__syscall$ioprio_set:
     mov rax, 251
     syscall
     ret
 
-ioprio_get:
+__syscall$ioprio_get:
     mov rax, 252
     syscall
     ret
 
-inotify_init:
+__syscall$inotify_init:
     mov rax, 253
     syscall
     ret
 
-inotify_add_watch:
+__syscall$inotify_add_watch:
     mov rax, 254
     syscall
     ret
 
-inotify_rm_watch:
+__syscall$inotify_rm_watch:
     mov rax, 255
     syscall
     ret
 
-migrate_pages:
+__syscall$migrate_pages:
     mov rax, 256
     syscall
     ret
 
-openat:
+__syscall$openat:
     mov rax, 257
     syscall
     ret
 
-mkdirat:
+__syscall$mkdirat:
     mov rax, 258
     syscall
     ret
 
-mknodat:
+__syscall$mknodat:
     mov rax, 259
     syscall
     ret
 
-fchownat:
+__syscall$fchownat:
     mov rax, 260
     syscall
     ret
 
-futimesat:
+__syscall$futimesat:
     mov rax, 261
     syscall
     ret
 
-newfstatat:
+__syscall$newfstatat:
     mov rax, 262
     syscall
     ret
 
-unlinkat:
+__syscall$unlinkat:
     mov rax, 263
     syscall
     ret
 
-renameat:
+__syscall$renameat:
     mov rax, 264
     syscall
     ret
 
-linkat:
+__syscall$linkat:
     mov rax, 265
     syscall
     ret
 
-symlinkat:
+__syscall$symlinkat:
     mov rax, 266
     syscall
     ret
 
-readlinkat:
+__syscall$readlinkat:
     mov rax, 267
     syscall
     ret
 
-fchmodat:
+__syscall$fchmodat:
     mov rax, 268
     syscall
     ret
 
-faccessat:
+__syscall$faccessat:
     mov rax, 269
     syscall
     ret
 
-pselect6:
+__syscall$pselect6:
     mov rax, 270
     syscall
     ret
 
-ppoll:
+__syscall$ppoll:
     mov rax, 271
     syscall
     ret
 
-unshare:
+__syscall$unshare:
     mov rax, 272
     syscall
     ret
 
-set_robust_list:
+__syscall$set_robust_list:
     mov rax, 273
     syscall
     ret
 
-get_robust_list:
+__syscall$get_robust_list:
     mov rax, 274
     syscall
     ret
 
-splice:
+__syscall$splice:
     mov rax, 275
     syscall
     ret
 
-tee:
+__syscall$tee:
     mov rax, 276
     syscall
     ret
 
-sync_file_range:
+__syscall$sync_file_range:
     mov rax, 277
     syscall
     ret
 
-vmsplice:
+__syscall$vmsplice:
     mov rax, 278
     syscall
     ret
 
-move_pages:
+__syscall$move_pages:
     mov rax, 279
     syscall
     ret
 
-utimensat:
+__syscall$utimensat:
     mov rax, 280
     syscall
     ret
 
-epoll_pwait:
+__syscall$epoll_pwait:
     mov rax, 281
     syscall
     ret
 
-signalfd:
+__syscall$signalfd:
     mov rax, 282
     syscall
     ret
 
-timerfd_create:
+__syscall$timerfd_create:
     mov rax, 283
     syscall
     ret
 
-eventfd:
+__syscall$eventfd:
     mov rax, 284
     syscall
     ret
 
-fallocate:
+__syscall$fallocate:
     mov rax, 285
     syscall
     ret
 
-timerfd_settime:
+__syscall$timerfd_settime:
     mov rax, 286
     syscall
     ret
 
-timerfd_gettime:
+__syscall$timerfd_gettime:
     mov rax, 287
     syscall
     ret
 
-accept4:
+__syscall$accept4:
     mov rax, 288
     syscall
     ret
 
-signalfd4:
+__syscall$signalfd4:
     mov rax, 289
     syscall
     ret
 
-eventfd2:
+__syscall$eventfd2:
     mov rax, 290
     syscall
     ret
 
-epoll_create1:
+__syscall$epoll_create1:
     mov rax, 291
     syscall
     ret
 
-dup3:
+__syscall$dup3:
     mov rax, 292
     syscall
     ret
 
-pipe2:
+__syscall$pipe2:
     mov rax, 293
     syscall
     ret
 
-inotify_init1:
+__syscall$inotify_init1:
     mov rax, 294
     syscall
     ret
 
-preadv:
+__syscall$preadv:
     mov rax, 295
     syscall
     ret
 
-pwritev:
+__syscall$pwritev:
     mov rax, 296
     syscall
     ret
 
-rt_tgsigqueueinfo:
+__syscall$rt_tgsigqueueinfo:
     mov rax, 297
     syscall
     ret
 
-perf_event_open:
+__syscall$perf_event_open:
     mov rax, 298
     syscall
     ret
 
-recvmmsg:
+__syscall$recvmmsg:
     mov rax, 299
     syscall
     ret
 
-fanotify_init:
+__syscall$fanotify_init:
     mov rax, 300
     syscall
     ret
 
-fanotify_mark:
+__syscall$fanotify_mark:
     mov rax, 301
     syscall
     ret
 
-prlimit64:
+__syscall$prlimit64:
     mov rax, 302
     syscall
     ret
 
-name_to_handle_at:
+__syscall$name_to_handle_at:
     mov rax, 303
     syscall
     ret
 
-open_by_handle_at:
+__syscall$open_by_handle_at:
     mov rax, 304
     syscall
     ret
 
-clock_adjtime:
+__syscall$clock_adjtime:
     mov rax, 305
     syscall
     ret
 
-syncfs:
+__syscall$syncfs:
     mov rax, 306
     syscall
     ret
 
-sendmmsg:
+__syscall$sendmmsg:
     mov rax, 307
     syscall
     ret
 
-setns:
+__syscall$setns:
     mov rax, 308
     syscall
     ret
 
-getcpu:
+__syscall$getcpu:
     mov rax, 309
     syscall
     ret
 
-process_vm_readv:
+__syscall$process_vm_readv:
     mov rax, 310
     syscall
     ret
 
-process_vm_writev:
+__syscall$process_vm_writev:
     mov rax, 311
     syscall
     ret
 
-kcmp:
+__syscall$kcmp:
     mov rax, 312
     syscall
     ret
 
-finit_module:
+__syscall$finit_module:
     mov rax, 313
     syscall
     ret
 
-sched_setattr:
+__syscall$sched_setattr:
     mov rax, 314
     syscall
     ret
 
-sched_getattr:
+__syscall$sched_getattr:
     mov rax, 315
     syscall
     ret
 
-renameat2:
+__syscall$renameat2:
     mov rax, 316
     syscall
     ret
 
-seccomp:
+__syscall$seccomp:
     mov rax, 317
     syscall
     ret
 
-getrandom:
+__syscall$getrandom:
     mov rax, 318
     syscall
     ret
 
-memfd_create:
+__syscall$memfd_create:
     mov rax, 319
     syscall
     ret
 
-kexec_file_load:
+__syscall$kexec_file_load:
     mov rax, 320
     syscall
     ret
 
-bpf:
+__syscall$bpf:
     mov rax, 321
     syscall
     ret
 
-execveat:
+__syscall$execveat:
     mov rax, 322
     syscall
     ret
 
-userfaultfd:
+__syscall$userfaultfd:
     mov rax, 323
     syscall
     ret
 
-membarrier:
+__syscall$membarrier:
     mov rax, 324
     syscall
     ret
 
-mlock2:
+__syscall$mlock2:
     mov rax, 325
     syscall
     ret
 
-copy_file_range:
+__syscall$copy_file_range:
     mov rax, 326
     syscall
     ret
 
-preadv2:
+__syscall$preadv2:
     mov rax, 327
     syscall
     ret
 
-pwritev2:
+__syscall$pwritev2:
     mov rax, 328
     syscall
     ret
 
-pkey_mprotect:
+__syscall$pkey_mprotect:
     mov rax, 329
     syscall
     ret
 
-pkey_alloc:
+__syscall$pkey_alloc:
     mov rax, 330
     syscall
     ret
 
-pkey_free:
+__syscall$pkey_free:
     mov rax, 331
     syscall
     ret
 
-statx:
+__syscall$statx:
     mov rax, 332
     syscall
     ret
 
-io_pgetevents:
+__syscall$io_pgetevents:
     mov rax, 333
     syscall
     ret
 
-rseq:
+__syscall$rseq:
     mov rax, 334
     syscall
     ret
 
-uretprobe:
+__syscall$uretprobe:
     mov rax, 335
     syscall
     ret
 
-pidfd_send_signal:
+__syscall$pidfd_send_signal:
     mov rax, 424
     syscall
     ret
 
-io_uring_setup:
+__syscall$io_uring_setup:
     mov rax, 425
     syscall
     ret
 
-io_uring_enter:
+__syscall$io_uring_enter:
     mov rax, 426
     syscall
     ret
 
-io_uring_register:
+__syscall$io_uring_register:
     mov rax, 427
     syscall
     ret
 
-open_tree:
+__syscall$open_tree:
     mov rax, 428
     syscall
     ret
 
-move_mount:
+__syscall$move_mount:
     mov rax, 429
     syscall
     ret
 
-fsopen:
+__syscall$fsopen:
     mov rax, 430
     syscall
     ret
 
-fsconfig:
+__syscall$fsconfig:
     mov rax, 431
     syscall
     ret
 
-fsmount:
+__syscall$fsmount:
     mov rax, 432
     syscall
     ret
 
-fspick:
+__syscall$fspick:
     mov rax, 433
     syscall
     ret
 
-pidfd_open:
+__syscall$pidfd_open:
     mov rax, 434
     syscall
     ret
 
-clone3:
+__syscall$clone3:
     mov rax, 435
     syscall
     ret
 
-close_range:
+__syscall$close_range:
     mov rax, 436
     syscall
     ret
 
-openat2:
+__syscall$openat2:
     mov rax, 437
     syscall
     ret
 
-pidfd_getfd:
+__syscall$pidfd_getfd:
     mov rax, 438
     syscall
     ret
 
-faccessat2:
+__syscall$faccessat2:
     mov rax, 439
     syscall
     ret
 
-process_madvise:
+__syscall$process_madvise:
     mov rax, 440
     syscall
     ret
 
-epoll_pwait2:
+__syscall$epoll_pwait2:
     mov rax, 441
     syscall
     ret
 
-mount_setattr:
+__syscall$mount_setattr:
     mov rax, 442
     syscall
     ret
 
-quotactl_fd:
+__syscall$quotactl_fd:
     mov rax, 443
     syscall
     ret
 
-landlock_create_ruleset:
+__syscall$landlock_create_ruleset:
     mov rax, 444
     syscall
     ret
 
-landlock_add_rule:
+__syscall$landlock_add_rule:
     mov rax, 445
     syscall
     ret
 
-landlock_restrict_self:
+__syscall$landlock_restrict_self:
     mov rax, 446
     syscall
     ret
 
-memfd_secret:
+__syscall$memfd_secret:
     mov rax, 447
     syscall
     ret
 
-process_mrelease:
+__syscall$process_mrelease:
     mov rax, 448
     syscall
     ret
 
-futex_waitv:
+__syscall$futex_waitv:
     mov rax, 449
     syscall
     ret
 
-set_mempolicy_home_node:
+__syscall$set_mempolicy_home_node:
     mov rax, 450
     syscall
     ret
 
-cachestat:
+__syscall$cachestat:
     mov rax, 451
     syscall
     ret
 
-fchmodat2:
+__syscall$fchmodat2:
     mov rax, 452
     syscall
     ret
 
-map_shadow_stack:
+__syscall$map_shadow_stack:
     mov rax, 453
     syscall
     ret
 
-futex_wake:
+__syscall$futex_wake:
     mov rax, 454
     syscall
     ret
 
-futex_wait:
+__syscall$futex_wait:
     mov rax, 455
     syscall
     ret
 
-futex_requeue:
+__syscall$futex_requeue:
     mov rax, 456
     syscall
     ret
 
-statmount:
+__syscall$statmount:
     mov rax, 457
     syscall
     ret
 
-listmount:
+__syscall$listmount:
     mov rax, 458
     syscall
     ret
 
-lsm_get_self_attr:
+__syscall$lsm_get_self_attr:
     mov rax, 459
     syscall
     ret
 
-lsm_set_self_attr:
+__syscall$lsm_set_self_attr:
     mov rax, 460
     syscall
     ret
 
-lsm_list_modules:
+__syscall$lsm_list_modules:
     mov rax, 461
     syscall
     ret
 
-mseal:
+__syscall$mseal:
     mov rax, 462
     syscall
     ret
 
-setxattrat:
+__syscall$setxattrat:
     mov rax, 463
     syscall
     ret
 
-getxattrat:
+__syscall$getxattrat:
     mov rax, 464
     syscall
     ret
 
-listxattrat:
+__syscall$listxattrat:
     mov rax, 465
     syscall
     ret
 
-removexattrat:
+__syscall$removexattrat:
     mov rax, 466
     syscall
     ret
