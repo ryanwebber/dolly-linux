@@ -55,7 +55,7 @@ COPY config /home/wuso/config
 COPY userspace /home/wuso/userspace
 
 # Build the distro
-RUN make -C /home/wuso
+RUN make -C /home/wuso BUILD_DIR=/distbuild
 
 # Keep the container running
 CMD ["/bin/bash"]

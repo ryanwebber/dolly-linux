@@ -7,14 +7,14 @@ TOOLCHAIN ?=
 COMMON_CFLAGS := -Wall
 COMMON_LDFLAGS :=
 
-SUBDIRS := bin libc
+SUBDIRS := crt0 libc bin
 
 # Default target: build all subdirectories
 all: $(SUBDIRS)
 
 # For each subdirectory, invoke its Makefile, passing the build directories and flags
 $(SUBDIRS):
-	$(MAKE) -C $@ BUILD_DIR=$(abspath $(BUILD_DIR)/$@) \
+	$(MAKE) -C $@ BUILD_DIR=$(abspath $(BUILD_DIR)/$@) USERLAND_BUILD_DIR=$(abspath $(BUILD_DIR)) \
 	        TOOLCHAIN=$(TOOLCHAIN) CFLAGS="$(COMMON_CFLAGS)" LDFLAGS="$(COMMON_LDFLAGS)"
 
 install:

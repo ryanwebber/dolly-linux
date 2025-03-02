@@ -10,8 +10,8 @@ A small x86_64 linux userspace from scratch, for educational purposes.
  - [x] Build an init binary
  - [x] Construct the initramfs
  - [x] Package and build a bootable disk image
- - [ ] Build a libc and libc runtime
- - [ ] Statically link binaries with our own libc
+ - [x] Build a libc and libc runtime
+ - [x] Statically link binaries with our own libc
  - [ ] Iterate on libc, and core utilities
  - [ ] Build an x-server implementation
  - [ ] Port build scripts to Nix?

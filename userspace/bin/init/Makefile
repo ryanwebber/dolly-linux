@@ -29,7 +29,7 @@ install:
 
 # Build the executable from object files
 $(TARGET): $(OBJS) | $(BUILD_DIR)
-	$(CC) $(CFLAGS) $(OBJS) -o $@ $(LDFLAGS)
+	LD_LIBRARY_PATH="" $(CC) $(CFLAGS) $(OBJS) -o $@ $(LDFLAGS) -v
 
 # Compile source files into object files
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(BUILD_DIR)
