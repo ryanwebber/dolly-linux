@@ -4,7 +4,8 @@
 #include "sys/types.h"
 #include "sys/wait.h"
 
-void __syscall$_exit(int status);
+__attribute__((noreturn)) void __syscall$exit(int status);
+
 int __syscall$execve(const char *path, char *const argv[], char *const envp[]);
 pid_t __syscall$fork(void);
 int __syscall$waitid(idtype_t idtype, id_t id, siginfo_t *infop, int options, void*);

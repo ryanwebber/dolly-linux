@@ -3,6 +3,8 @@
 #ifndef _SIGNAL_H
 #define _SIGNAL_H
 
+#include <sys/types.h>
+
 union sigval {
     int sival_int;
     void* sival_ptr;

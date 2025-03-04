@@ -10,6 +10,8 @@ RUN apt-get update && \
     bison \
     flex \
     make \
+    cmake \
+    gawk \
     file \
     xz-utils \
     bash \

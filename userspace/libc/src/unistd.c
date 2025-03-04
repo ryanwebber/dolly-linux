@@ -2,7 +2,7 @@
 #include "syscalls.h"
 
 void _exit(int status) {
-    return __syscall$exit(status);
+    __syscall$exit(status);
 }
 
 int execve(const char *path, char *const argv[], char *const envp[]) {
