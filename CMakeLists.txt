@@ -23,6 +23,14 @@ set(INITRAMFS ${BUILD_DIR}/initramfs.cpio)
 set(USERSPACE_INSTALL_DIR ${BUILD_DIR}/initramfs)
 set(USERSPACE_DIR ${CMAKE_BINARY_DIR}/userspace)
 
+# All userspace targets that install to the initramfs
+set(USERSPACE_INSTALL_TARGETS
+    crt0
+    init
+    sh
+    wlibc
+)
+
 set(CMAKE_INSTALL_PREFIX ${USERSPACE_INSTALL_DIR})
 Set(FETCHCONTENT_QUIET FALSE)
 
@@ -54,12 +62,14 @@ add_subdirectory(kernel)
 
 # Build initramfs: Install userspace binaries into temporary directory before archiving
 add_custom_command(OUTPUT ${INITRAMFS}
-    DEPENDS userspace
+    DEPENDS userspace ${USERSPACE_INSTALL_TARGETS}
     COMMAND ${CMAKE_COMMAND} -E make_directory ${USERSPACE_INSTALL_DIR}
     COMMAND ${CMAKE_COMMAND} --build ${USERSPACE_DIR} --target install
     COMMAND cd ${USERSPACE_INSTALL_DIR} && find . | ${CPIO_EXECUTABLE} -H newc -o > ${INITRAMFS}
     COMMENT "Building initramfs and archiving userspace"
 )
+
+add_custom_target(initramfs DEPENDS ${INITRAMFS})
 
 # ISO build
 add_custom_command(OUTPUT ${ISO_TARGET}
@@ -74,10 +84,4 @@ add_custom_command(OUTPUT ${ISO_TARGET}
     COMMENT "Building bootable ISO to ${ISO_TARGET}"
 )
 
-# Define main targets
-add_custom_target(initramfs ALL DEPENDS ${INITRAMFS})
 add_custom_target(iso ALL DEPENDS ${ISO_TARGET})
-
-# Dependencies
-add_dependencies(initramfs userspace)
-add_dependencies(iso kernel initramfs)

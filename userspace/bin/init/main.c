@@ -6,10 +6,13 @@ int main()
     while (1)
     {
         pid_t fork_result = fork();
-        if (fork_result == 0) {
+        if (fork_result == 0)
+        {
             execve("/usr/bin/sh", 0, 0);
             break;
-        } else {
+        }
+        else
+        {
             siginfo_t info;
             waitid(P_ALL, 0, &info, WEXITED);
         }

@@ -66,11 +66,16 @@
 
 int main()
 {
-    char *buf[256];
+    char buf[256];
     while (1)
     {
         write(1, "sh> ", 4);
-        read(0, buf, 256);
+        int len = read(0, buf, 256);
+        if (len > 0)
+        {
+            write(1, "echo> ", 6);
+            write(1, buf, len);
+        }
     }
 
     // setup_tty();

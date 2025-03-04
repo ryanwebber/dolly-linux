@@ -21,8 +21,13 @@ A toy x86_64 linux userspace made from scratch, as a learning exercise.
 
 ## Building
 
-With the dependencies installed, the image can be run with just `make`. Dependencies are
-listed in the Dockerfile.
+With the dependencies installed, the image can be build with the default cmake target.
+
+```sh
+mkdir build && cd build
+cmake ..
+make
+```
 
 Buiding with docker (or podman) is also supported.
 
@@ -35,7 +40,8 @@ Note: Build has only been tested on arm64 macOS, so cross-compilation is the def
 
 ## Developing
 
-With the [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension installed in VSCode, the project will automatically be mounted
-in a development container with all the necessary dependencies installed. From here, you can
-attach a terminal to the container (or use the built-in terminal) to run `make` and build the
-image, and changes to the source will be reflected on the host filesystem.
+With the [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+extension installed in VSCode, the project will automatically be mounted in a development container with
+all the necessary dependencies installed. From here, you can attach a terminal to the container (or use
+the built-in terminal) to run `cmake` and build the image, and changes to the source will be reflected
+on the host filesystem.

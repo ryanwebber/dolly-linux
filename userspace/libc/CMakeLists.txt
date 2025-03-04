@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 project(wlibc LANGUAGES C ASM)
 
-set(TARGET_NAME ${PROJECT_NAME})
+set(TARGET_NAME wlibc)
 
 # Define include and source directories
 set(INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)

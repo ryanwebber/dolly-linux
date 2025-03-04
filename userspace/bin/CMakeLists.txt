@@ -12,5 +12,5 @@ foreach(SUBDIR ${SUBDIRS})
     add_subdirectory(${SUBDIR})
 endforeach()
 
-# Main target to build all userspace components
+# Main target to build all bin components
 add_custom_target(bin ALL DEPENDS ${SUBDIRS})
