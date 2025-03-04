@@ -2,7 +2,9 @@
 #define _SYSCALLS_H
 
 #include "sys/types.h"
+#include "sys/select.h"
 #include "sys/wait.h"
+#include "signal.h"
 
 __attribute__((noreturn)) void __syscall$exit(int status);
 
@@ -12,5 +14,8 @@ int __syscall$waitid(idtype_t idtype, id_t id, siginfo_t *infop, int options, vo
 
 ssize_t __syscall$read(int fildes, void *buf, size_t nbyte);
 ssize_t __syscall$write(int fildes, const void *buf, size_t nbyte);
+
+// TODO: Support timeout parameter
+int __syscall$select(int nfds, fd_set *restrict readfds, fd_set *restrict writefds, fd_set *restrict errorfds, void *timeout);
 
 #endif

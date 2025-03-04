@@ -453,6 +453,7 @@ __syscall$pipe:
 
 __syscall$select:
     mov rax, 23
+    mov r10, rcx
     syscall
     ret
 
