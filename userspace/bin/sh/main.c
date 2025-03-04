@@ -2,10 +2,10 @@
 // #include <stdio.h>
 // #include <stdlib.h>
 // #include <sys/wait.h>
+#include <poll.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <sys/select.h>
 
 // #define MAX_INPUT 1024
 // #define MAX_ARGS 128
@@ -70,30 +70,27 @@
 int main()
 {
     char buf[256];
-    fd_set read_fds;
+
+    struct pollfd fds;
+    fds.fd = stdin;
+    fds.events = POLLIN;
 
     while (1)
     {
-        // Initialize the set of file descriptors to monitor
-        FD_ZERO(&read_fds);
-        FD_SET(stdin, &read_fds);
-
         // Wait for input to be available on stdin
-        if (select(stdin + 1, &read_fds, NULL, NULL, NULL) > 0)
-        {
-            // Input is ready to be read
-            if (FD_ISSET(stdin, &read_fds))
-            {
-                // Print the prompt
-                write(stdout, "sh> ", 4);
+        int ret = poll(&fds, 1, -1);
 
-                // Read input from stdin
-                int len = read(stdin, buf, 256);
-                if (len > 0)
-                {
-                    write(1, "echo> ", 6);
-                    write(1, buf, len);
-                }
+        if (ret > 0 && (fds.revents & POLLIN))
+        {
+            // Print the prompt
+            write(stdout, "xh> ", 4);
+
+            // Read input from stdin
+            int len = read(stdin, buf, 256);
+            if (len > 0)
+            {
+                write(1, "echo> ", 6);
+                write(1, buf, len);
             }
         }
     }

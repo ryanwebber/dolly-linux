@@ -33,7 +33,7 @@ Buiding with docker (or podman) is also supported.
 
 ```sh
 podman build -t wuso-linux .
-podman cp wuso-linux:/distbuild/x86_64-wuso-linux.iso .
+podman cp wuso-linux:/distbuild/build/x86_64-wuso-linux.iso .
 ```
 
 Note: Build has only been tested on arm64 macOS, so cross-compilation is the default behavior.
