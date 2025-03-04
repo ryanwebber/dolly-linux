@@ -5,10 +5,16 @@
 
 #include <signal.h>
 
-#define WEXITED 4
+#define WNOHANG 0x00000001
+#define WUNTRACED 0x00000002
+#define WSTOPPED WUNTRACED
+#define WEXITED 0x00000004
+#define WCONTINUED 0x00000008
+#define WNOWAIT 0x01000000
 
-typedef enum {
-    P_ALL = 1,
+typedef enum
+{
+    P_ALL = 0,
     P_PID,
     P_PGID
 } idtype_t;

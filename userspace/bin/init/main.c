@@ -15,6 +15,7 @@ int main()
         {
             siginfo_t info;
             waitid(P_ALL, 0, &info, WEXITED);
+            write(1, "Shell exited...\n", 16);
         }
     }
 

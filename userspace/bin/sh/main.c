@@ -77,21 +77,20 @@ int main()
 
     while (1)
     {
+        // Print the prompt
+        write(stdout, "sh> ", 4);
+
         // Wait for input to be available on stdin
-        int ret = poll(&fds, 1, -1);
-
-        if (ret > 0 && (fds.revents & POLLIN))
+        while (poll(&fds, 1, -1) <= 0 || !(fds.revents & POLLIN))
         {
-            // Print the prompt
-            write(stdout, "xh> ", 4);
+            // Do nothing
+        }
 
-            // Read input from stdin
-            int len = read(stdin, buf, 256);
-            if (len > 0)
-            {
-                write(1, "echo> ", 6);
-                write(1, buf, len);
-            }
+        int len = read(stdin, buf, 256);
+        if (len > 0)
+        {
+            write(1, "echo> ", 6);
+            write(1, buf, len);
         }
     }
 
