@@ -10,8 +10,8 @@ set(SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(BUILD_DIR "${CMAKE_BINARY_DIR}/build/${TARGET_NAME}" CACHE PATH "Build directory for ${TARGET_NAME}")
 
 # Set common flags for C and ASM
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-unused-function")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -nostdinc -Os -fno-ident -fno-asynchronous-unwind-tables -fno-stack-protector -fomit-frame-pointer")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-unused-function -ffreestanding -nostdlib -nostdinc -nostartfiles -nodefaultlibs -fno-builtin -fno-ident -fno-asynchronous-unwind-tables -fno-stack-protector -fomit-frame-pointer")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Os -ffreestanding -nostdlib -nostdinc -nostartfiles -nodefaultlibs -fno-builtin -fno-ident -fno-asynchronous-unwind-tables -fno-stack-protector -fomit-frame-pointer")
 set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS} -msyntax=intel -mnaked-reg")
 
 # Collect source files (C and ASM)

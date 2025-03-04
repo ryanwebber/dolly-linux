@@ -1,14 +1,13 @@
-// #include <fcntl.h>
-// #include <stdio.h>
-// #include <stdlib.h>
-// #include <sys/wait.h>
+
 #include <poll.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
+#include <sys/wait.h>
 
-// #define MAX_INPUT 1024
-// #define MAX_ARGS 128
+#define MAX_INPUT 1024
+#define MAX_ARGS 128
 
 // void setup_tty() {
 //     // Ensure the shell is connected to a TTY. If not, create a new session.
@@ -27,49 +26,72 @@
 //     }
 // }
 
-// void execute_command(char *cmd, char *args[]) {
-//     pid_t pid = fork();
-//     if (pid < 0) {
-//         perror("fork failed");
-//         exit(EXIT_FAILURE);
-//     } else if (pid == 0) {
-//         // Child process: execute command
-//         execv(cmd, args);
-//         perror("execv failed");
-//         exit(EXIT_FAILURE);
-//     } else {
-//         // Parent process: wait for the child process to complete
-//         int status;
-//         waitpid(pid, &status, 0);
-//     }
-// }
+void execute_command(char *cmd, char *args[])
+{
+    pid_t pid = fork();
+    if (pid < 0)
+    {
+        write(stderr, "fork failed\n", 12);
+    }
+    else if (pid == 0)
+    {
+        // Child process: execute command
+        execve(cmd, args, NULL);
+        write(stderr, "execve failed\n", 14);
+        _exit(1);
+    }
+    else
+    {
+        // Parent process: wait for the child process to complete
+        siginfo_t info;
+        waitid(P_ALL, 0, &info, WEXITED);
+    }
+}
 
-// size_t strsplit_n(char *str, char sep, char** start)
-// {
-//     while (str[0] != '\0' && str[0] == sep)
-//     {
-//         str++;
-//     }
+size_t tokenize_in_place(char *string, char **tokens)
+{
+    size_t count = 0;
+    char *current = string;
 
-//     *start = str;
+    while (*current != '\0')
+    {
+        // Skip leading whitespace
+        while (*current == ' ')
+        {
+            current++;
+        }
 
-//     size_t len = 0;
-//     while (str[len] != '\0')
-//     {
-//         if (str[len] == sep)
-//         {
-//             return len;
-//         }
+        if (*current == '\0')
+        {
+            break;
+        }
 
-//         len++;
-//     }
+        // Start of a new token
+        tokens[count++] = current;
 
-//     return len;
-// }
+        // Move to the end of the token
+        while (*current != '\0' && *current != ' ')
+        {
+            current++;
+        }
+
+        // Null-terminate the token if we are not at the end of the string
+        if (*current != '\0')
+        {
+            *current = '\0';
+            current++;
+        }
+    }
+
+    return count;
+}
 
 int main()
 {
-    char buf[256];
+    // setup_tty();
+
+    char input[MAX_INPUT];
+    char *args[MAX_ARGS];
 
     struct pollfd fds;
     fds.fd = stdin;
@@ -86,61 +108,28 @@ int main()
             // Do nothing
         }
 
-        int len = read(stdin, buf, 256);
-        if (len > 0)
+        size_t len = read(stdin, input, MAX_INPUT - 1);
+        if (len <= 0)
         {
-            write(1, "echo> ", 6);
-            write(1, buf, len);
+            write(stdout, "\n", 1);
+            continue;
         }
+
+        // Remove newline character from input
+        input[len - 1] = '\0';
+
+        size_t arg_count = tokenize_in_place(input, args);
+
+        // Null-terminate the argument list
+        args[arg_count] = NULL;
+
+        // If the user entered an empty command, skip
+        if (arg_count == 0)
+        {
+            continue;
+        }
+
+        // Execute the command
+        execute_command(args[0], args);
     }
-
-    // setup_tty();
-
-    // char input[MAX_INPUT];
-    // char *args[MAX_ARGS];
-
-    // while (1) {
-    //     // Display a prompt
-    //     write(1, "sh> ", 4);
-
-    //     // Read user input
-    //     ssize_t count = read(0, input, sizeof(input) - 1);
-    //     if (count <= 0) {
-    //         continue;
-    //     }
-
-    //     // Remove newline character from input
-    //     input[count] = '\0';
-    //     input[count - 1] = '\0';
-
-    //     int arglen;
-    //     int argi = 0;
-    //     char* ptr = &input[0];
-    //     while (arglen = strsplit_n(ptr, ' ', &ptr))
-    //     {
-    //         ptr[arglen] = '\0';
-    //         write(1, ptr, arglen);
-    //         write(1, "\n", 1);
-    //         args[argi++] = ptr;
-    //         ptr += arglen + 1;
-    //     }
-
-    //     write(1, "\nargs: ", 7);
-    //     char x = '0' + argi;
-    //     write(1, &x, 1);
-    //     write(1, "\n", 1);
-
-    //     // Null-terminate the argument list
-    //     args[argi] = NULL;
-
-    //     // If the user entered an empty command, skip
-    //     if (args[0] == NULL) {
-    //         continue;
-    //     }
-
-    //     // Execute the command
-    //     execute_command(args[0], args);
-    // }
-
-    // return 0;
 }
