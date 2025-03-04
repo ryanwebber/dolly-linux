@@ -26,9 +26,12 @@ set(USERSPACE_DIR ${CMAKE_BINARY_DIR}/userspace)
 # All userspace targets that install to the initramfs
 set(USERSPACE_INSTALL_TARGETS
     crt0
+    echo
+    false
     init
-    sh
     libc
+    sh
+    true
 )
 
 set(CMAKE_INSTALL_PREFIX ${USERSPACE_INSTALL_DIR})

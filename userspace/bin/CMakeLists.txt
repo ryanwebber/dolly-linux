@@ -5,7 +5,13 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -nostdinc")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static -nostartfiles -nostdlib -nodefaultlibs -z noexecstack")
 
 # Define subdirectories (each one will have its own CMakeLists.txt)
-set(SUBDIRS init sh)
+set(SUBDIRS
+    echo
+    false
+    init
+    sh
+    true
+)
 
 # Include subdirectories (each subdirectory is expected to define its own install rules)
 foreach(SUBDIR ${SUBDIRS})

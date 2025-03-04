@@ -3,6 +3,8 @@
 #ifndef _STDLIB_H
 #define _STDLIB_H
 
+#include <sys/types.h>
+
 #define NULL 0
 
 #endif
