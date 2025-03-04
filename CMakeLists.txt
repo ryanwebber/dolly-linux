@@ -11,13 +11,13 @@ if(TOOLCHAIN_FILE)
     include(${TOOLCHAIN_FILE})
 endif()
 
-project(wuso-linux LANGUAGES C ASM)
+project(dolly-linux LANGUAGES C ASM)
 
 message(STATUS "Using gcc toolchain: ${CMAKE_C_COMPILER}")
 
 # Set build directories
 set(BUILD_DIR ${CMAKE_BINARY_DIR}/build)
-set(ISO_TARGET ${BUILD_DIR}/${ARCH}-linux-wuso.iso)
+set(ISO_TARGET ${BUILD_DIR}/${ARCH}-dolly-linux.iso)
 set(BOOT_FILES ${BUILD_DIR}/iso-root)
 set(INITRAMFS ${BUILD_DIR}/initramfs.cpio)  
 set(USERSPACE_INSTALL_DIR ${BUILD_DIR}/initramfs)
@@ -28,7 +28,7 @@ set(USERSPACE_INSTALL_TARGETS
     crt0
     init
     sh
-    wlibc
+    libc
 )
 
 set(CMAKE_INSTALL_PREFIX ${USERSPACE_INSTALL_DIR})

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
-project(wlibc LANGUAGES C ASM)
+project(libc LANGUAGES C ASM)
 
-set(TARGET_NAME wlibc)
+set(TARGET_NAME libc)
 
 # Define include and source directories
 set(INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
@@ -31,7 +31,7 @@ target_include_directories(${TARGET_NAME}
 )
 
 # Set target properties
-set_target_properties(${TARGET_NAME} PROPERTIES OUTPUT_NAME "wlibc")
+set_target_properties(${TARGET_NAME} PROPERTIES OUTPUT_NAME "c")
 
 # Install the library
 install(

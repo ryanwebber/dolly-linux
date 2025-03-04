@@ -2,7 +2,7 @@
 FROM debian:stable
 
 ARG BUILD_DIR=/distbuild
-ARG SOURCE_DIR=/home/wuso
+ARG SOURCE_DIR=/home/dolly
 
 # Update and install basic dependencies
 RUN apt-get update && \

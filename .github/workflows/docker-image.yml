@@ -12,4 +12,4 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Docker build
-      run: docker build . --file Dockerfile --tag wuso-linux:$(date +%s)
+      run: docker build . --file Dockerfile --tag dolly-linux:$(date +%s)

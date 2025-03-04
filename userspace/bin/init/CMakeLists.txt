@@ -18,7 +18,7 @@ add_executable(${TARGET_NAME} ${SRC_FILE})
 # Link the application with our libc
 target_link_libraries(${TARGET_NAME}
     PRIVATE
-        wlibc
+        libc
         $<TARGET_OBJECTS:crt0>
 )
 

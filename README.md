@@ -1,6 +1,6 @@
-# Wuso Linux
+# Dolly Linux
 
-[![Build Image](https://github.com/ryanwebber/wuso-linux/actions/workflows/docker-image.yml/badge.svg)](https://github.com/ryanwebber/wuso-linux/actions/workflows/docker-image.yml)
+[![Build Image](https://github.com/ryanwebber/dolly-linux/actions/workflows/docker-image.yml/badge.svg)](https://github.com/ryanwebber/dolly-linux/actions/workflows/docker-image.yml)
 
 A toy x86_64 linux userspace made from scratch, as a learning exercise.
 
@@ -32,8 +32,8 @@ make
 Buiding with docker (or podman) is also supported.
 
 ```sh
-podman build -t wuso-linux .
-podman cp wuso-linux:/distbuild/build/x86_64-wuso-linux.iso .
+podman build -t dolly-linux .
+podman cp dolly-linux:/distbuild/build/x86_64-dolly-linux.iso .
 ```
 
 Note: Build has only been tested on arm64 macOS, so cross-compilation is the default behavior.
