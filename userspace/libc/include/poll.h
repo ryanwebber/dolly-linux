@@ -1,4 +1,4 @@
-// https://pubs.opengroup.org/onlinepubs/7908799/xsh/poll.h.html
+// https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/poll.h.html
 
 #ifndef _POLL_H
 #define _POLL_H

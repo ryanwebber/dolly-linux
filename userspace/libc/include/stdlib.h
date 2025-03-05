@@ -3,8 +3,12 @@
 #ifndef _STDLIB_H
 #define _STDLIB_H
 
-#include <sys/types.h>
-
 #define NULL 0
+
+// Shamelessly copied from https://awesomekling.github.io/How-SerenityOS-declares-ssize_t/
+typedef __SIZE_TYPE__ size_t;
+#define unsigned signed
+typedef __SIZE_TYPE__ ssize_t;
+#undef unsigned
 
 #endif

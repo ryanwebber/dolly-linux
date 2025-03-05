@@ -31,13 +31,13 @@ void execute_command(char *cmd, char *args[])
     pid_t pid = fork();
     if (pid < 0)
     {
-        write(stderr, "fork failed\n", 12);
+        write(STDERR_FILENO, "fork failed\n", 12);
     }
     else if (pid == 0)
     {
         // Child process: execute command
         execve(cmd, args, NULL);
-        write(stderr, "execve failed\n", 14);
+        write(STDERR_FILENO, "execve failed\n", 14);
         _exit(1);
     }
     else
@@ -94,13 +94,13 @@ int main()
     char *args[MAX_ARGS];
 
     struct pollfd fds;
-    fds.fd = stdin;
+    fds.fd = STDIN_FILENO;
     fds.events = POLLIN;
 
     while (1)
     {
         // Print the prompt
-        write(stdout, "sh> ", 4);
+        write(STDOUT_FILENO, "sh> ", 4);
 
         // Wait for input to be available on stdin
         while (poll(&fds, 1, -1) <= 0 || !(fds.revents & POLLIN))
@@ -108,10 +108,10 @@ int main()
             // Do nothing
         }
 
-        size_t len = read(stdin, input, MAX_INPUT - 1);
+        size_t len = read(STDIN_FILENO, input, MAX_INPUT - 1);
         if (len <= 0)
         {
-            write(stdout, "\n", 1);
+            write(STDOUT_FILENO, "\n", 1);
             continue;
         }
 

@@ -1,3 +1,5 @@
+// https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/stdarg.h.html
+
 #ifndef _STDARG_H
 #define _STDARG_H
 
