@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 project(bin LANGUAGES C)
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -nostdinc")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -ffreestanding -nostdlib -nostdinc -nostartfiles -nodefaultlibs -fno-builtin")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static -nostartfiles -nostdlib -nodefaultlibs -z noexecstack")
 
 # Define subdirectories (each one will have its own CMakeLists.txt)

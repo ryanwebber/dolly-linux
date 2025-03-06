@@ -3,6 +3,7 @@
 #ifndef _STDIO_H
 #define _STDIO_H
 
+#include <stdarg.h>
 #include <stdlib.h>
 #include <stdbool.h>
 
@@ -38,9 +39,11 @@ extern FILE *stdin;
 extern FILE *stdout;
 extern FILE *stderr;
 
+int fprintf(FILE *stream, const char *format, ...);
 int fputc(int c, FILE *stream);
 int fputs(const char *s, FILE *stream);
 int printf(const char *format, ...);
 int putchar(int c);
+int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap);
 
 #endif

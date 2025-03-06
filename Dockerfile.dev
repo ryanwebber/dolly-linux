@@ -1,6 +1,8 @@
 # Use the Debian stable image as the base
 FROM debian:stable
 
+ENV LC_ALL=C
+
 # Update and install basic dependencies
 RUN apt-get update && \
     apt-get install -y \

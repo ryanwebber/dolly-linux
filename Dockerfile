@@ -4,6 +4,8 @@ FROM debian:stable
 ARG BUILD_DIR=/distbuild
 ARG SOURCE_DIR=/home/dolly
 
+ENV LC_ALL=C
+
 # Update and install basic dependencies
 RUN apt-get update && \
     apt-get install -y \

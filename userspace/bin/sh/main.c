@@ -1,7 +1,9 @@
 
 #include <poll.h>
+#include <fnctl.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <unistd.h>
 #include <string.h>
 #include <sys/wait.h>
@@ -9,22 +11,34 @@
 #define MAX_INPUT 1024
 #define MAX_ARGS 128
 
-// void setup_tty() {
-//     // Ensure the shell is connected to a TTY. If not, create a new session.
-//     if (!isatty(STDIN_FILENO)) {
-//         setsid(); // Create a new session.
-//         int fd = open("/dev/tty", O_RDWR);
-//         if (fd >= 0) {
-//             dup2(fd, STDIN_FILENO);
-//             dup2(fd, STDOUT_FILENO);
-//             dup2(fd, STDERR_FILENO);
-//             close(fd);
-//         } else {
-//             perror("Failed to set up TTY");
-//             exit(EXIT_FAILURE);
-//         }
-//     }
-// }
+// TODO: Implement isatty in libc
+bool isatty(int fd)
+{
+    (void)fd;
+    return false;
+}
+
+void setup_tty()
+{
+    // Ensure the shell is connected to a TTY. If not, create a new session.
+    if (!isatty(STDIN_FILENO))
+    {
+        setsid(); // Create a new session.
+        int fd = open("/dev/tty", O_RDWR);
+        if (fd >= 0)
+        {
+            dup2(fd, STDIN_FILENO);
+            dup2(fd, STDOUT_FILENO);
+            dup2(fd, STDERR_FILENO);
+            close(fd);
+        }
+        else
+        {
+            write(STDERR_FILENO, "Failed to open /dev/tty\n", 24);
+            _exit(1);
+        }
+    }
+}
 
 void execute_command(char *cmd, char *args[])
 {
@@ -88,8 +102,6 @@ size_t tokenize_in_place(char *string, char **tokens)
 
 int main()
 {
-    // setup_tty();
-
     char input[MAX_INPUT];
     char *args[MAX_ARGS];
 
@@ -126,6 +138,13 @@ int main()
         // If the user entered an empty command, skip
         if (arg_count == 0)
         {
+            continue;
+        }
+
+        if (args[0][0] == '.')
+        {
+            printf("Setup TTY...\n");
+            setup_tty();
             continue;
         }
 

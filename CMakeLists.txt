@@ -76,7 +76,7 @@ add_custom_target(initramfs DEPENDS ${INITRAMFS})
 
 # ISO build
 add_custom_command(OUTPUT ${ISO_TARGET}
-    DEPENDS ${KERNEL_IMAGE} ${INITRAMFS}
+    DEPENDS kernel ${INITRAMFS}
     COMMAND ${CMAKE_COMMAND} -E make_directory ${BOOT_FILES}/boot/syslinux
     COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/config/syslinux.cfg ${BOOT_FILES}/boot/syslinux
     COMMAND ${CMAKE_COMMAND} -E copy ${SYSLINUX_ELF_LOADER} ${BOOT_FILES}/boot/syslinux

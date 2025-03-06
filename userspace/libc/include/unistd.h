@@ -17,4 +17,9 @@ pid_t fork(void);
 ssize_t read(int fildes, void *buf, size_t nbyte);
 ssize_t write(int fildes, const void *buf, size_t nbyte);
 
+int close(int fildes);
+int dup2(int fildes, int fildes2);
+
+pid_t setsid(void);
+
 #endif

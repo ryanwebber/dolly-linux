@@ -1154,6 +1154,7 @@ __syscall$settimeofday:
 
 __syscall$mount:
     mov rax, 165
+    mov r10, rcx
     syscall
     ret
 

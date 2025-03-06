@@ -1,6 +1,6 @@
-#include <stdarg.h>
-#include <stdio.h>
-#include <unistd.h>
+#include "stdarg.h"
+#include "stdio.h"
+#include "unistd.h"
 
 #define __FILE_BUFFER_SIZE 1024
 
@@ -65,6 +65,18 @@ static int flush_buffer(FILE *stream)
     return 0;
 }
 
+int fprintf(FILE *restrict stream, const char *restrict format, ...)
+{
+    va_list args;
+    va_start(args, format);
+
+    int result = vfprintf(stream, format, args);
+
+    va_end(args);
+
+    return result;
+}
+
 int fputc(int c, FILE *stream)
 {
     // Add the character to the buffer
@@ -101,8 +113,20 @@ int printf(const char *format, ...)
     va_list args;
     va_start(args, format);
 
-    FILE *stream = stdout;
+    int result = vfprintf(stdout, format, args);
 
+    va_end(args);
+
+    return result;
+}
+
+int putchar(int c)
+{
+    return fputc(c, stdout);
+}
+
+int vfprintf(FILE *restrict stream, const char *restrict format, va_list args)
+{
     while (*format != '\0')
     {
         if (*format == '%' && *(format + 1) != '\0')
@@ -113,8 +137,28 @@ int printf(const char *format, ...)
             case 'd':
             {
                 int i = va_arg(args, int);
-                (void)i;
-                fnwrites("123", 3, stream);
+                if (i < 0)
+                {
+                    fputc('-', stream);
+                    i = -i;
+                }
+
+                // Write out the digits in order
+                int divisor = 1;
+                while (i / divisor >= 10)
+                {
+                    divisor *= 10;
+                }
+
+                // Print each digit
+                while (divisor > 0)
+                {
+                    int digit = i / divisor;
+                    fputc('0' + digit, stream);
+                    i %= divisor;
+                    divisor /= 10;
+                }
+
                 break;
             }
             case 's':
@@ -138,12 +182,5 @@ int printf(const char *format, ...)
         format++;
     }
 
-    va_end(args);
-
     return 0;
-}
-
-int putchar(int c)
-{
-    return fputc(c, stdout);
 }

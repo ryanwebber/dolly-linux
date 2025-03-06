@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(init LANGUAGES ASM)
+project(init LANGUAGES C)
 
 set(TARGET_NAME ${PROJECT_NAME})
 
