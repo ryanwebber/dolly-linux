@@ -7,6 +7,7 @@
 #define O_WRONLY 0x00000001  /* open for writing only */
 #define O_RDWR 0x00000002    /* open for reading and writing */
 #define O_ACCMODE 0x00000003 /* mask for above modes */
+#define O_DIRECTORY 0x10000  /* must be a directory */
 
 int open(const char *path, int oflag, ...);
 

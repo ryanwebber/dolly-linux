@@ -1,3 +1,5 @@
+# https://man7.org/linux/man-pages/man2/syscall.2.html
+
 .global __syscall$read
 .global __syscall$write
 .global __syscall$open

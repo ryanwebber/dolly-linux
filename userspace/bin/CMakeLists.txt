@@ -10,6 +10,7 @@ set(SUBDIRS
     echo
     false
     init
+    ls
     sh
     true
 )

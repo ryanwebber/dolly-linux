@@ -9,5 +9,7 @@ typedef int id_t;
 typedef int pid_t;
 typedef int uid_t;
 typedef int mode_t;
+typedef unsigned long ino_t;
+typedef unsigned long off_t;
 
 #endif

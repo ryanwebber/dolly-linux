@@ -31,6 +31,7 @@ set(USERSPACE_INSTALL_TARGETS
     false
     init
     libc
+    ls
     sh
     true
 )
