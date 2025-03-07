@@ -25,6 +25,7 @@ set(USERSPACE_DIR ${CMAKE_BINARY_DIR}/userspace)
 
 # All userspace targets that install to the initramfs
 set(USERSPACE_INSTALL_TARGETS
+    cat
     crt0
     echo
     false

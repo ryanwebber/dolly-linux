@@ -6,6 +6,7 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static -nostartfiles -nos
 
 # Define subdirectories (each one will have its own CMakeLists.txt)
 set(SUBDIRS
+    cat
     echo
     false
     init
