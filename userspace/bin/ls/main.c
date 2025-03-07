@@ -4,19 +4,6 @@
 #include <fnctl.h>
 #include <unistd.h>
 
-int opendir_nonalloc(const char *name, DIR *dir)
-{
-    // Open the directory using the open() system call
-    dir->fd = open(name, O_RDONLY | O_DIRECTORY);
-    return dir->fd;
-}
-
-int closedir(DIR *dir)
-{
-    // Close the directory using the close() system call
-    return close(dir->fd);
-}
-
 int main(int argc, char *argv[])
 {
     const char *path;
@@ -50,7 +37,7 @@ int main(int argc, char *argv[])
     }
 
     // Close the directory
-    closedir(&dir);
+    closedir_nonalloc(&dir);
 
     return 0;
 }

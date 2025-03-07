@@ -14,10 +14,11 @@ A toy x86_64 linux userspace made from scratch, as a learning exercise.
  - [x] Statically link binaries with our own libc
  - [ ] "Complete" libc and core utils
  - [ ] Try and port some simple software
- - [ ] Build an x-server implementation
- - [ ] Port build scripts to Nix?
- - [ ] Build a bootloader?
+ - [ ] Mount a persistent filesystem
+ - [ ] Build an installer in the live image?
+ - [ ] Build an x-server implementation?
  - [ ] Dynamic linking support?
+ - [ ] Build a bootloader?
 
 ## Building
 

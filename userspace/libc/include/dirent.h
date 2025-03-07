@@ -8,17 +8,22 @@
 struct dirent
 {
     ino_t d_ino;
-    off_t d_off;
-    unsigned short d_reclen;
-    char d_name[256];
-    char pad;
-    char d_type;
+    char *d_name;
 };
 
 typedef struct
 {
+    // File descriptor for the directory
     int fd;
-    struct dirent current;
+
+    // Buffer to hold directory entries
+    char buffer[4096];
+
+    // Current position within the buffer
+    size_t buf_pos;
+
+    // Total size of valid data in buffer
+    size_t buf_size;
 } DIR;
 
 DIR *opendir(const char *filename);
