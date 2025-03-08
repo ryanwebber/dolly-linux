@@ -28,6 +28,7 @@ set(USERSPACE_INSTALL_TARGETS
     cat
     crt0
     echo
+    env
     false
     init
     libc

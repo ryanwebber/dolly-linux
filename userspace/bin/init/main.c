@@ -22,9 +22,19 @@ int main()
         pid_t fork_result = fork();
         if (fork_result == 0)
         {
-            char *argv[] = {0};
-            char *envp[] = {0};
-            execve("/usr/bin/sh", &argv[0], &envp[0]);
+            char *argv[] = {
+                "/usr/bin/sh",
+                0,
+            };
+
+            char *envp[] = {
+                "PATH=/usr/bin",
+                "HOME=/",
+                "PWD=/",
+                0,
+            };
+
+            execve(argv[0], &argv[0], &envp[0]);
             break;
         }
         else

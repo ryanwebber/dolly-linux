@@ -40,7 +40,7 @@ void setup_tty()
     }
 }
 
-void execute_command(char *cmd, char *args[])
+void execute_command(char *cmd, char *args[], char *envp[])
 {
     pid_t pid = fork();
     if (pid < 0)
@@ -50,7 +50,7 @@ void execute_command(char *cmd, char *args[])
     else if (pid == 0)
     {
         // Child process: execute command
-        execve(cmd, args, NULL);
+        execve(cmd, args, envp);
         write(STDERR_FILENO, "execve failed\n", 14);
         _exit(1);
     }
@@ -100,8 +100,11 @@ size_t tokenize_in_place(char *string, char **tokens)
     return count;
 }
 
-int main()
+int main(int argc, char *argv[], char *envp[])
 {
+    (void)argc;
+    (void)argv;
+
     char input[MAX_INPUT];
     char *args[MAX_ARGS];
 
@@ -149,6 +152,6 @@ int main()
         }
 
         // Execute the command
-        execute_command(args[0], args);
+        execute_command(args[0], args, envp);
     }
 }

@@ -10,7 +10,7 @@ A toy x86_64 linux userspace made from scratch, as a learning exercise.
  - [x] Build an init binary
  - [x] Construct the initramfs
  - [x] Package and build a bootable disk image
- - [x] Build a libc and libc runtime
+ - [x] Build a bare minimum libc and libc runtime
  - [x] Statically link binaries with our own libc
  - [ ] "Complete" libc and core utils
  - [ ] Try and port some simple software

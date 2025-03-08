@@ -1,7 +1,8 @@
 #include "dirent+.h"
 #include "fnctl.h"
-#include "unistd.h"
+#include "linux_dirent.h"
 #include "syscalls.h"
+#include "unistd.h"
 
 int opendir_nonalloc(const char *name, DIR *dir)
 {

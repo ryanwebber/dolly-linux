@@ -8,6 +8,7 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static -nostartfiles -nos
 set(SUBDIRS
     cat
     echo
+    env
     false
     init
     ls
