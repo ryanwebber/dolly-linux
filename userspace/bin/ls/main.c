@@ -26,8 +26,6 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    printf("Listing directory (%d): %s\n", dir.fd, path);
-
     // Read and print the directory entries
     int i = 0;
     struct dirent entry;

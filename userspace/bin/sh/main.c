@@ -15,7 +15,7 @@
 bool isatty(int fd)
 {
     (void)fd;
-    return false;
+    return true;
 }
 
 void setup_tty()
@@ -34,7 +34,7 @@ void setup_tty()
         }
         else
         {
-            write(STDERR_FILENO, "Failed to open /dev/tty\n", 24);
+            fprintf(stderr, "Failed to open /dev/tty\n");
             _exit(1);
         }
     }
@@ -45,13 +45,13 @@ void execute_command(char *cmd, char *args[], char *envp[])
     pid_t pid = fork();
     if (pid < 0)
     {
-        write(STDERR_FILENO, "fork failed\n", 12);
+        fprintf(stderr, "fork failed\n");
     }
     else if (pid == 0)
     {
         // Child process: execute command
         execve(cmd, args, envp);
-        write(STDERR_FILENO, "execve failed\n", 14);
+        fprintf(stderr, "execve failed\n");
         _exit(1);
     }
     else
@@ -112,9 +112,11 @@ int main(int argc, char *argv[], char *envp[])
     fds.fd = STDIN_FILENO;
     fds.events = POLLIN;
 
+    setup_tty();
+
     while (1)
     {
-        // Print the prompt
+        // Print the prompt, using write to avoid buffering
         write(STDOUT_FILENO, "sh> ", 4);
 
         // Wait for input to be available on stdin
@@ -141,13 +143,6 @@ int main(int argc, char *argv[], char *envp[])
         // If the user entered an empty command, skip
         if (arg_count == 0)
         {
-            continue;
-        }
-
-        if (args[0][0] == '.')
-        {
-            printf("Setup TTY...\n");
-            setup_tty();
             continue;
         }
 
