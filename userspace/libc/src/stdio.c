@@ -52,6 +52,11 @@ static size_t fnwrites(const char *str, size_t count, FILE *stream)
 
 static int flush_buffer(FILE *stream)
 {
+    if (stream->fd < 0)
+    {
+        return -1;
+    }
+
     if (stream->buf_pos > 0)
     {
         // Write the buffer content to stdout
@@ -125,6 +130,18 @@ int putchar(int c)
     return fputc(c, stdout);
 }
 
+int snprintf(char *restrict str, size_t size, const char *restrict format, ...)
+{
+    va_list args;
+    va_start(args, format);
+
+    int result = vsnprintf(str, size, format, args);
+
+    va_end(args);
+
+    return result;
+}
+
 int vfprintf(FILE *restrict stream, const char *restrict format, va_list args)
 {
     while (*format != '\0')
@@ -180,6 +197,29 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list args)
         }
 
         format++;
+    }
+
+    return 0;
+}
+
+int vsnprintf(char *restrict str, size_t size, const char *restrict format, va_list ap)
+{
+    FILE stream = {
+        .fd = -1,
+        .buffer = str,
+        .buf_size = size,
+        .buf_pos = 0,
+        .flags = 0,
+        .mode = 0,
+        .is_line_buffered = false,
+    };
+
+    vfprintf(&stream, format, ap);
+
+    // Null-terminate the string
+    if (size > 0)
+    {
+        str[size - 1] = '\0';
     }
 
     return 0;

@@ -11,4 +11,9 @@ typedef __SIZE_TYPE__ size_t;
 typedef __SIZE_TYPE__ ssize_t;
 #undef unsigned
 
+void *malloc(size_t size);
+void free(void *ptr);
+
+char *getenv(const char *name);
+
 #endif

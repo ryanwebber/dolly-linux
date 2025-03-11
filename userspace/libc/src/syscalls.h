@@ -23,6 +23,8 @@ int __syscall$open(const char *path, int oflag, mode_t mode);
 int __syscall$close(int fildes);
 int __syscall$dup2(int fildes, int fildes2);
 
+int __syscall$access(const char *path, int mode);
+
 pid_t __syscall$setsid(void);
 
 // TODO: Support timeout parameter

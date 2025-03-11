@@ -44,6 +44,8 @@ int fputc(int c, FILE *stream);
 int fputs(const char *s, FILE *stream);
 int printf(const char *format, ...);
 int putchar(int c);
+int snprintf(char *restrict str, size_t size, const char *restrict format, ...);
 int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap);
+int vsnprintf(char *restrict str, size_t size, const char *restrict format, va_list ap);
 
 #endif

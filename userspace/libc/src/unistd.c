@@ -1,5 +1,7 @@
-#include "unistd.h"
+#include "stdlib.h"
 #include "syscalls.h"
+#include "unistd.h"
+#include "which+.h"
 
 void _exit(int status)
 {
@@ -9,6 +11,22 @@ void _exit(int status)
 int execve(const char *path, char *const argv[], char *const envp[])
 {
     return __syscall$execve(path, argv, envp);
+}
+
+int execvp(const char *file, char *const argv[])
+{
+    // TODO: Look up the PATH environment variable and try to find the executable
+    char *full_path = which(file);
+    if (full_path == NULL)
+    {
+        return execve(file, argv, environ);
+    }
+    else
+    {
+        int result = execve(full_path, argv, environ);
+        free(full_path);
+        return result;
+    }
 }
 
 pid_t fork(void)
@@ -35,6 +53,11 @@ int close(int fildes)
 int dup2(int fildes, int fildes2)
 {
     return __syscall$dup2(fildes, fildes2);
+}
+
+int access(const char *path, int mode)
+{
+    return __syscall$access(path, mode);
 }
 
 pid_t setsid(void)

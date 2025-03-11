@@ -42,6 +42,8 @@ void setup_tty()
 
 void execute_command(char *cmd, char *args[], char *envp[])
 {
+    (void)envp;
+
     pid_t pid = fork();
     if (pid < 0)
     {
@@ -50,7 +52,7 @@ void execute_command(char *cmd, char *args[], char *envp[])
     else if (pid == 0)
     {
         // Child process: execute command
-        execve(cmd, args, envp);
+        execvp(cmd, args);
         fprintf(stderr, "execve failed\n");
         _exit(1);
     }
