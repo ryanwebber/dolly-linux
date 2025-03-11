@@ -35,6 +35,7 @@ set(USERSPACE_INSTALL_TARGETS
     ls
     sh
     true
+    which
 )
 
 set(CMAKE_INSTALL_PREFIX ${USERSPACE_INSTALL_DIR})

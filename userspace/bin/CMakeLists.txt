@@ -14,6 +14,7 @@ set(SUBDIRS
     ls
     sh
     true
+    which
 )
 
 # Include subdirectories (each subdirectory is expected to define its own install rules)
