@@ -48,4 +48,6 @@ int snprintf(char *restrict str, size_t size, const char *restrict format, ...);
 int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap);
 int vsnprintf(char *restrict str, size_t size, const char *restrict format, va_list ap);
 
+void perror(const char *s);
+
 #endif

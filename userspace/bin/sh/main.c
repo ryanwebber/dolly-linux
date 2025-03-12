@@ -1,6 +1,6 @@
 
 #include <poll.h>
-#include <fnctl.h>
+#include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>

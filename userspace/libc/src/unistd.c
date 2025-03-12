@@ -60,6 +60,21 @@ int access(const char *path, int mode)
     return __syscall$access(path, mode);
 }
 
+int chown(const char *path, uid_t owner, gid_t group)
+{
+    return __syscall$chown(path, owner, group);
+}
+
+gid_t getgid(void)
+{
+    return __syscall$getgid();
+}
+
+uid_t getuid(void)
+{
+    return __syscall$getuid();
+}
+
 pid_t setsid(void)
 {
     return __syscall$setsid();

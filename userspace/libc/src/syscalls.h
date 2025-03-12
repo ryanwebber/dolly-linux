@@ -25,6 +25,10 @@ int __syscall$dup2(int fildes, int fildes2);
 
 int __syscall$access(const char *path, int mode);
 
+int __syscall$chown(const char *path, uid_t owner, gid_t group);
+
+gid_t __syscall$getgid(void);
+uid_t __syscall$getuid(void);
 pid_t __syscall$setsid(void);
 
 // TODO: Support timeout parameter
@@ -35,6 +39,10 @@ int __syscall$poll(struct pollfd fds[], nfds_t nfds, int timeout);
 int __syscall$mkdir(const char *path, mode_t mode);
 long __syscall$getdents(unsigned int fd, struct linux_dirent *dirp, unsigned int count);
 
+int __syscall$chmod(const char *path, mode_t mode);
+
 int __syscall$mount(const char *source, const char *target, const char *filesystemtype, unsigned long mountflags, const void *data);
+
+int __syscall$ioctl(int fildes, unsigned long request, ...);
 
 #endif

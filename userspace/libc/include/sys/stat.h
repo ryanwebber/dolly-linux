@@ -5,6 +5,12 @@
 
 #include <sys/types.h>
 
+#define S_IRUSR 0400
+#define S_IWUSR 0200
+#define S_IWGRP 0020
+
 int mkdir(const char *path, mode_t mode);
+
+int chmod(const char *path, mode_t mode);
 
 #endif

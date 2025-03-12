@@ -224,3 +224,9 @@ int vsnprintf(char *restrict str, size_t size, const char *restrict format, va_l
 
     return 0;
 }
+
+void perror(const char *s)
+{
+    // TODO: Print the error message corresponding to errno
+    fprintf(stderr, "error: %s\n", s);
+}

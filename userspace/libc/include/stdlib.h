@@ -11,9 +11,16 @@ typedef __SIZE_TYPE__ size_t;
 typedef __SIZE_TYPE__ ssize_t;
 #undef unsigned
 
+void exit(int status);
+
 void *malloc(size_t size);
 void free(void *ptr);
 
 char *getenv(const char *name);
+
+int posix_openpt(int oflag);
+int grantpt(int fildes);
+int unlockpt(int fildes);
+char *ptsname(int fildes);
 
 #endif

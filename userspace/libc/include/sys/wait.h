@@ -20,5 +20,6 @@ typedef enum
 } idtype_t;
 
 int waitid(idtype_t idtype, id_t id, siginfo_t *infop, int options);
+pid_t waitpid(pid_t pid, int *stat_loc, int options);
 
 #endif

@@ -13,6 +13,7 @@ set(SUBDIRS
     init
     ls
     sh
+    term
     true
     which
 )

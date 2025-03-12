@@ -85,3 +85,15 @@ char *strdup(const char *s1)
     dup[len] = '\0';
     return dup;
 }
+
+void *memset(void *b, int c, size_t len)
+{
+    unsigned char *p = b;
+    while (len > 0)
+    {
+        *p = c;
+        p++;
+        len--;
+    }
+    return b;
+}

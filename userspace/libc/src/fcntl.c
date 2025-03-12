@@ -1,4 +1,4 @@
-#include "fnctl.h"
+#include "fcntl.h"
 #include "syscalls.h"
 
 int open(const char *path, int oflag, ...)

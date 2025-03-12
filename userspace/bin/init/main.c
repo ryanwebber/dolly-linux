@@ -1,4 +1,4 @@
-#include <fnctl.h>
+#include <fcntl.h>
 #include <stdio+.h>
 #include <sys/mount.h>
 #include <sys/stat.h>
@@ -14,6 +14,12 @@ void init_devfs()
 
     printfn(__INIT_LOG_PREFIX "Mounting devtmpfs to /dev");
     mount("devtmpfs", "/dev", "devtmpfs", 0, 0);
+
+    printfn(__INIT_LOG_PREFIX "Creating /dev/pts");
+    mkdir("/dev/pts", 0755);
+
+    printfn(__INIT_LOG_PREFIX "Mounting devpts to /dev/pts");
+    mount("devpts", "/dev/pts", "devpts", 0, 0);
 }
 
 void init_console()

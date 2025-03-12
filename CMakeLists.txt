@@ -34,6 +34,7 @@ set(USERSPACE_INSTALL_TARGETS
     libc
     ls
     sh
+    term
     true
     which
 )

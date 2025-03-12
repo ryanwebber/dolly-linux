@@ -13,6 +13,7 @@ A toy x86_64 linux userspace made from scratch, as a learning exercise.
  - [x] Build a bare minimum libc and libc runtime
  - [x] Statically link binaries with our own libc
  - [ ] Zero BSS and data sections in crt0
+ - [ ] Implement a basic terminal emulator
  - [ ] "Complete" libc and core utils
  - [ ] Try and port some simple software
  - [ ] Mount a persistent filesystem

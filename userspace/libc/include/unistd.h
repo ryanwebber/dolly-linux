@@ -31,7 +31,10 @@ int close(int fildes);
 int dup2(int fildes, int fildes2);
 
 int access(const char *path, int mode);
+int chown(const char *path, uid_t owner, gid_t group);
 
+gid_t getgid(void);
+uid_t getuid(void);
 pid_t setsid(void);
 
 #endif

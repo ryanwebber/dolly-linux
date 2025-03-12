@@ -1,5 +1,5 @@
 #include "dirent+.h"
-#include "fnctl.h"
+#include "fcntl.h"
 #include "linux_dirent.h"
 #include "syscalls.h"
 #include "unistd.h"

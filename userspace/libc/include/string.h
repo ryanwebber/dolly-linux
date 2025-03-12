@@ -11,4 +11,6 @@ char *strchr(const char *s, int c);
 char *strsep(char **stringp, const char *delim);
 char *strdup(const char *s1);
 
+void *memset(void *b, int c, size_t len);
+
 #endif
