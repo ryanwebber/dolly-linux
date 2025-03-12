@@ -151,13 +151,16 @@ void handle_io(int master_fd)
 int main()
 {
     int master_fd;
-    pid_t shell_pid;
 
     // Fork and execute the shell
-    shell_pid = fork_shell(&master_fd);
+    pid_t shell_pid = fork_shell(&master_fd);
 
     // Clear the screen buffer
     clear_screen_buffer();
+
+    // Clear the screen
+    write(STDOUT_FILENO, "\033[2J", 4);
+    write(STDOUT_FILENO, "\033[H", 3);
 
     // Main input/output handling loop
     handle_io(master_fd);
