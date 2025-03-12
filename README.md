@@ -7,20 +7,19 @@ A toy x86_64 linux userspace made from scratch, as a learning exercise.
 ## Plan
 
  - [x] Build a kernel
- - [x] Build an init binary
+ - [x] Implement an init binary
  - [x] Construct the initramfs
  - [x] Package and build a bootable disk image
- - [x] Build a bare minimum libc and libc runtime
+ - [x] Implement a bare minimum libc and libc runtime
  - [x] Statically link binaries with our own libc
- - [ ] Zero BSS and data sections in crt0
+ - [ ] Implement BSS zero-ing in crt0
  - [ ] Implement a basic terminal emulator
- - [ ] "Complete" libc and core utils
  - [ ] Try and port some simple software
  - [ ] Mount a persistent filesystem
- - [ ] Build an installer in the live image?
- - [ ] Build an x-server implementation?
- - [ ] Dynamic linking support?
- - [ ] Build a bootloader?
+ - [ ] Implement an installer in the live image?
+ - [ ] Implement an x-server implementation?
+ - [ ] Implement dynamic linking support?
+ - [ ] Implement a bootloader?
 
 ## Building
 
