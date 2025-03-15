@@ -4,6 +4,8 @@
 
 A toy x86_64 linux userspace made from scratch, as a learning exercise.
 
+![Screenshot](.github/screenshot.png)
+
 ## Plan
 
  - [x] Build a kernel
