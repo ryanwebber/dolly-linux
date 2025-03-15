@@ -6,6 +6,9 @@ set(TOOLCHAIN_FILE "${CMAKE_SOURCE_DIR}/toolchain.cmake" CACHE FILEPATH "Toolcha
 # Define option to skip building the userspace
 option(BUILD_USER_SPACE "Build the userspace" ON)
 
+# Define a list of ports to build, defaults to none ('all' means all ports)
+set(PORTS "" CACHE STRING "List of ports to build")
+
 # Load the toolchain file if provided
 if(TOOLCHAIN_FILE)
     include(${TOOLCHAIN_FILE})

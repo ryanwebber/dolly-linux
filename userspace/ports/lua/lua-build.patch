@@ -1,0 +1,26 @@
+--- src/Makefile	2025-03-15 19:34:14.996264617 +0000
++++ src/Makefile	2025-03-15 21:13:24.277895382 +0000
+@@ -30,7 +30,7 @@
+ 
+ # == END OF USER SETTINGS -- NO NEED TO CHANGE ANYTHING BELOW THIS LINE =======
+ 
+-PLATS= guess aix bsd c89 freebsd generic ios linux linux-readline macosx mingw posix solaris
++PLATS= guess aix bsd c89 freebsd generic ios linux linux-readline macosx mingw posix solaris dolly
+ 
+ LUA_A=	liblua.a
+ CORE_O=	lapi.o lcode.o lctype.o ldebug.o ldo.o ldump.o lfunc.o lgc.o llex.o lmem.o lobject.o lopcodes.o lparser.o lstate.o lstring.o ltable.o ltm.o lundump.o lvm.o lzio.o
+@@ -143,6 +143,14 @@
+ SunOS solaris:
+ 	$(MAKE) $(ALL) SYSCFLAGS="-DLUA_USE_POSIX -DLUA_USE_DLOPEN -D_REENTRANT" SYSLIBS="-ldl"
+ 
++dolly:
++	$(MAKE) $(ALL) \
++		CC="$(CC) -std=gnu99" \
++		AR="$(AR) rcu" \
++		SYSCFLAGS="-ffreestanding -nostdlib -nostdinc -nostartfiles -nodefaultlibs -fno-builtin -fmax-errors=5" \
++		SYSLDFLAGS="-static -nostartfiles -nostdlib -nodefaultlibs -z noexecstack" \
++		SYSLIBS=""
++
+ # Targets that do not create files (not all makes understand .PHONY).
+ .PHONY: all $(PLATS) help test clean default o a depend echo
+ 

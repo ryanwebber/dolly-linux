@@ -16,6 +16,7 @@ RUN apt-get update && \
     flex \
     make \
     cmake \
+    patch \
     gawk \
     file \
     xz-utils \
@@ -71,7 +72,7 @@ COPY userspace/crt0 $SOURCE_DIR/userspace/crt0
 COPY userspace/libc $SOURCE_DIR/userspace/libc
 
 # Build the distro
-RUN cmake $SOURCE_DIR -DBUILD_USER_SPACE=YES
+RUN cmake $SOURCE_DIR -DBUILD_USER_SPACE=YES -DPORTS=
 RUN make
 
 # Keep the container running

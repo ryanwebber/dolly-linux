@@ -13,6 +13,7 @@ RUN apt-get update && \
     flex \
     make \
     cmake \
+    patch \
     gawk \
     file \
     xz-utils \

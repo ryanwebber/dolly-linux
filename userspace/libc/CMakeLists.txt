@@ -32,6 +32,7 @@ target_include_directories(${TARGET_NAME}
 
 # Set target properties
 set_target_properties(${TARGET_NAME} PROPERTIES OUTPUT_NAME "c")
+set_target_properties(${TARGET_NAME} PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${BUILD_DIR})
 
 # Install the library
 install(
