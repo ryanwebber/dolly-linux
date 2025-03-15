@@ -112,3 +112,8 @@ char *ptsname(int fildes)
     snprintf(buffer, sizeof(buffer), "/dev/pts/%d", (int)pts_number);
     return buffer;
 }
+
+int abs(int i)
+{
+    return i < 0 ? -i : i;
+}

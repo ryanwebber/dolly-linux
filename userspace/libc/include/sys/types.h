@@ -13,4 +13,6 @@ typedef int mode_t;
 typedef unsigned long ino_t;
 typedef unsigned long off_t;
 
+typedef int sig_atomic_t;
+
 #endif

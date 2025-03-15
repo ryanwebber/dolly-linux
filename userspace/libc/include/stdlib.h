@@ -11,6 +11,10 @@ typedef __SIZE_TYPE__ size_t;
 typedef __SIZE_TYPE__ ssize_t;
 #undef unsigned
 
+typedef __PTRDIFF_TYPE__ ptrdiff_t;
+
+#define offsetof(type, member) __builtin_offsetof(type, member)
+
 void exit(int status);
 
 void *malloc(size_t size);
@@ -22,5 +26,7 @@ int posix_openpt(int oflag);
 int grantpt(int fildes);
 int unlockpt(int fildes);
 char *ptsname(int fildes);
+
+int abs(int i);
 
 #endif
