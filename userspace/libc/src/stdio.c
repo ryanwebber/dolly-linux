@@ -225,6 +225,13 @@ int vsnprintf(char *restrict str, size_t size, const char *restrict format, va_l
     return 0;
 }
 
+size_t fwrite(const void *restrict ptr, size_t size, size_t nitems, FILE *restrict stream)
+{
+    size_t count = size * nitems;
+    const char *str = ptr;
+    return fnwrites(str, count, stream);
+}
+
 void perror(const char *s)
 {
     // TODO: Print the error message corresponding to errno

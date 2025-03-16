@@ -21,6 +21,8 @@ struct __jmp_buf
 
 typedef struct __jmp_buf jmp_buf[1];
 
+int setjmp(jmp_buf env);
+
 __attribute__((noreturn)) void longjmp(jmp_buf, int val);
 
 #endif

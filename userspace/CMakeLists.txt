@@ -6,7 +6,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -Werror")
 
 # Define subdirectories (each one will have its own CMakeLists.txt)
 if(BUILD_USER_SPACE)
-    set(SUBDIRS bin crt0 libc ports)
+    set(SUBDIRS bin crt0 libc libm ports)
 else()
     set(SUBDIRS "")
 endif()
@@ -17,4 +17,4 @@ foreach(SUBDIR ${SUBDIRS})
 endforeach()
 
 # Main target to build all userspace components
-add_custom_target(userspace ALL DEPENDS bin crt0 libc ports)
+add_custom_target(userspace ALL DEPENDS ${SUBDIRS})
