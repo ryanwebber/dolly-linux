@@ -18,10 +18,12 @@ typedef __PTRDIFF_TYPE__ ptrdiff_t;
 
 #define offsetof(type, member) __builtin_offsetof(type, member)
 
-void exit(int status);
-void abort(void);
+__attribute__((noreturn)) void exit(int status);
+__attribute__((noreturn)) void abort(void);
 
 void *malloc(size_t size);
+void *realloc(void *ptr, size_t size);
+void *calloc(size_t nmemb, size_t size);
 void free(void *ptr);
 
 char *getenv(const char *name);

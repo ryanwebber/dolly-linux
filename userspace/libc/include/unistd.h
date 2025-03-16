@@ -17,7 +17,7 @@
 // Defined by crt0
 extern char **environ;
 
-void _exit(int status);
+__attribute__((noreturn)) void _exit(int status);
 
 int execve(const char *path, char *const argv[], char *const envp[]);
 int execvp(const char *file, char *const argv[]);

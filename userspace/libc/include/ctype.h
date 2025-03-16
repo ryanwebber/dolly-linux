@@ -1,4 +1,4 @@
-// https://pubs.opengroup.org/onlinepubs/009695299/basedefs/assert.h.html
+// https://pubs.opengroup.org/onlinepubs/009695299/basedefs/ctype.h.html
 
 #ifndef _CTYPE_H
 #define _CTYPE_H

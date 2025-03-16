@@ -17,9 +17,10 @@ size_t strlen(const char *s);
 size_t strspn(const char *s, const char *charset);
 char *strstr(const char *haystack, const char *needle);
 
-int memcmp(const void *s1, const void *s2, size_t n);
-void *memcpy(void *restrict dst, const void *restrict src, size_t n);
-void *memchr(const void *s, int c, size_t n);
-void *memset(void *b, int c, size_t len);
+#define memmove(dst, src, n) __builtin_memmove(dst, src, n)
+#define memset(b, c, len) __builtin_memset(b, c, len)
+#define memchr(s, c, n) __builtin_memchr(s, c, n)
+#define memcmp(s1, s2, n) __builtin_memcmp(s1, s2, n)
+#define memcpy(dst, src, n) __builtin_memcpy(dst, src, n)
 
 #endif

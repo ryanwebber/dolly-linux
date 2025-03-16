@@ -54,7 +54,9 @@ extern FILE *stderr;
 
 char *fgets(char *restrict str, int size, FILE *restrict stream);
 FILE *fopen(const char *restrict path, const char *restrict mode);
+FILE *freopen(const char *path, const char *mode, FILE *stream);
 int fclose(FILE *stream);
+int feof(FILE *stream);
 int fflush(FILE *stream);
 int fprintf(FILE *stream, const char *format, ...);
 int fputc(int c, FILE *stream);
