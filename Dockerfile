@@ -70,6 +70,7 @@ COPY config $SOURCE_DIR/config
 COPY userspace/bin $SOURCE_DIR/userspace/bin
 COPY userspace/crt0 $SOURCE_DIR/userspace/crt0
 COPY userspace/libc $SOURCE_DIR/userspace/libc
+COPY userspace/libm $SOURCE_DIR/userspace/libm
 COPY userspace/ports $SOURCE_DIR/userspace/ports
 
 # Build the distro
