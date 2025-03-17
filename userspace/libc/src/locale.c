@@ -1,5 +1,5 @@
-#include "locale.h"
-#include "limits.h"
+#include <locale.h>
+#include <limits.h>
 
 static struct lconv lconv = {
     .decimal_point = ".",

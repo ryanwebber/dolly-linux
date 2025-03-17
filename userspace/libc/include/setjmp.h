@@ -3,7 +3,7 @@
 #ifndef _SETJMP_H
 #define _SETJMP_H
 
-#include "stdint.h"
+#include <stdint.h>
 
 struct __jmp_buf
 {

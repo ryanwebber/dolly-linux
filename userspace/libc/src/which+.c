@@ -1,9 +1,9 @@
-#include "macros.h"
-#include "stdlib.h"
-#include "stdio.h"
-#include "string.h"
-#include "unistd.h"
-#include "which+.h"
+#include <macros.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <which+.h>
 
 char *which(const char *name)
 {

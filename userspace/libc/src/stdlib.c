@@ -1,11 +1,12 @@
-#include "fcntl.h"
-#include "stdio.h"
-#include "stdlib.h"
-#include "string.h"
-#include "sys/ioctl.h"
-#include "sys/stat.h"
-#include "sys/types.h"
-#include "unistd.h"
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/ioctl.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include "todo.h"
 
 #define __MALLOC_HEAP_SIZE (4 * 1024 * 1024)
 
@@ -15,6 +16,11 @@ static size_t heap_offset = 0;
 void exit(int status)
 {
     _exit(status);
+}
+
+void abort(void)
+{
+    exit(1);
 }
 
 // Trivial malloc implementation that just leaks memory
@@ -111,6 +117,13 @@ char *ptsname(int fildes)
 
     snprintf(buffer, sizeof(buffer), "/dev/pts/%d", (int)pts_number);
     return buffer;
+}
+
+double strtod(const char *restrict nptr, char **restrict endptr)
+{
+    (void)nptr;
+    (void)endptr;
+    TODO("strtod");
 }
 
 int abs(int i)

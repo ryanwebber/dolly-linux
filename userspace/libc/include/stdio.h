@@ -52,17 +52,19 @@ extern FILE *stdin;
 extern FILE *stdout;
 extern FILE *stderr;
 
+#define getc(stream) fgetc(stream)
+
 char *fgets(char *restrict str, int size, FILE *restrict stream);
 FILE *fopen(const char *restrict path, const char *restrict mode);
 FILE *freopen(const char *path, const char *mode, FILE *stream);
 int fclose(FILE *stream);
 int feof(FILE *stream);
 int fflush(FILE *stream);
+int fgetc(FILE *stream);
 int fprintf(FILE *stream, const char *format, ...);
 int fputc(int c, FILE *stream);
 int fputs(const char *s, FILE *stream);
 int fseek(FILE *stream, long offset, int whence);
-int getc(FILE *stream);
 int printf(const char *format, ...);
 int putchar(int c);
 int setvbuf(FILE *restrict stream, char *restrict buf, int type, size_t size);

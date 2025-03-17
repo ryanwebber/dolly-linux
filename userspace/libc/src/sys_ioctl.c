@@ -1,5 +1,5 @@
-#include "stdarg.h"
-#include "sys/ioctl.h"
+#include <stdarg.h>
+#include <sys/ioctl.h>
 #include "syscalls.h"
 
 int ioctl(int fildes, unsigned long request, ...)

@@ -5,9 +5,9 @@
 
 #include <sys/types.h>
 
-#define SIG_ERR -1
-#define SIG_DFL 0
-#define SIG_IGN 1
+#define SIG_ERR ((sig_t)(-1))
+#define SIG_DFL ((sig_t)(0))
+#define SIG_IGN ((sig_t)(1))
 
 #define SIGINT 2   // Interactive attention signal.
 #define SIGILL 4   // Illegal instruction.

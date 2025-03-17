@@ -1,6 +1,6 @@
-#include "stdlib.h"
-#include "string.h"
-#include "unistd.h"
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 
 char *strchr(const char *s, int c)
 {
@@ -14,6 +14,16 @@ char *strchr(const char *s, int c)
     }
 
     return c == '\0' ? (char *)s : NULL;
+}
+
+char *strcpy(char *dst, const char *src)
+{
+    char *ret = dst;
+    while ((*dst++ = *src++) != '\0')
+    {
+    }
+
+    return ret;
 }
 
 char *strdup(const char *s1)
@@ -34,15 +44,39 @@ char *strdup(const char *s1)
     return dup;
 }
 
-size_t strlen(const char *s)
+char *strpbrk(const char *s, const char *charset)
 {
-    size_t len = 0;
-    while (s[len] != '\0')
+    while (*s != '\0')
     {
-        (void)s;
-        len++;
+        if (strchr(charset, *s) != NULL)
+        {
+            return (char *)s;
+        }
+        s++;
     }
-    return len;
+
+    return NULL;
+}
+
+int strcoll(const char *s1, const char *s2)
+{
+    // TODO: Use locale info
+    return strcmp(s1, s2);
+}
+
+int strcmp(const char *s1, const char *s2)
+{
+    while (*s1 != '\0' && *s2 != '\0')
+    {
+        if (*s1 != *s2)
+        {
+            return *s1 - *s2;
+        }
+        s1++;
+        s2++;
+    }
+
+    return *s1 - *s2;
 }
 
 int strncmp(const char *s1, const char *s2, size_t n)
@@ -84,6 +118,31 @@ char *strsep(char **stringp, const char *delim)
     }
 
     return tok_start;
+}
+
+size_t strlen(const char *s)
+{
+    size_t len = 0;
+    while (s[len] != '\0')
+    {
+        (void)s;
+        len++;
+    }
+    return len;
+}
+
+size_t strspn(const char *s, const char *charset)
+{
+    size_t len = 0;
+    while (s[len] != '\0')
+    {
+        if (strchr(charset, s[len]) == NULL)
+        {
+            return len;
+        }
+        len++;
+    }
+    return len;
 }
 
 void *memcpy(void *restrict dst, const void *restrict src, size_t n)

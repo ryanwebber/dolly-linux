@@ -1,6 +1,7 @@
-#include "stdarg.h"
-#include "stdio.h"
-#include "unistd.h"
+#include <errno.h>
+#include <stdarg.h>
+#include <stdio.h>
+#include <unistd.h>
 
 #define __FILE_BUFFER_SIZE 1024
 
@@ -70,6 +71,28 @@ static int flush_buffer(FILE *stream)
     return 0;
 }
 
+char *fgets(char *restrict str, int size, FILE *restrict stream)
+{
+    int i = 0;
+    while (i < size - 1)
+    {
+        int c = fgetc(stream);
+        if (c == EOF)
+        {
+            break;
+        }
+
+        str[i++] = c;
+        if (c == '\n')
+        {
+            break;
+        }
+    }
+
+    str[i] = '\0';
+    return str;
+}
+
 int fprintf(FILE *restrict stream, const char *restrict format, ...)
 {
     va_list args;
@@ -80,6 +103,35 @@ int fprintf(FILE *restrict stream, const char *restrict format, ...)
     va_end(args);
 
     return result;
+}
+
+int fflush(FILE *stream)
+{
+    return flush_buffer(stream);
+}
+
+int fgetc(FILE *stream)
+{
+    if (stream->fd < 0)
+    {
+        return EOF;
+    }
+
+    if (stream->buf_pos >= stream->buf_size)
+    {
+        flush_buffer(stream);
+    }
+
+    char c;
+    if (read(stream->fd, &c, 1) == 1)
+    {
+        stream->buffer[stream->buf_pos++] = c;
+        return c;
+    }
+    else
+    {
+        return EOF;
+    }
 }
 
 int fputc(int c, FILE *stream)
@@ -230,6 +282,59 @@ size_t fwrite(const void *restrict ptr, size_t size, size_t nitems, FILE *restri
     size_t count = size * nitems;
     const char *str = ptr;
     return fnwrites(str, count, stream);
+}
+
+char *strerror(int errnum)
+{
+    static char buffer[256];
+    switch (errnum)
+    {
+    case E2BIG:
+        return "Argument list too long";
+    case EACCES:
+        return "Permission denied";
+    case EAGAIN:
+        return "Resource temporarily unavailable";
+    case EBADF:
+        return "Bad file descriptor";
+    case EBUSY:
+        return "Device or resource busy";
+    case ECHILD:
+        return "No child processes";
+    case EEXIST:
+        return "File exists";
+    case EFAULT:
+        return "Bad address";
+    case EINTR:
+        return "Interrupted system call";
+    case EINVAL:
+        return "Invalid argument";
+    case EIO:
+        return "I/O error";
+    case EISDIR:
+        return "Is a directory";
+    case ENFILE:
+        return "File table overflow";
+    case ENODEV:
+        return "No such device";
+    case ENOENT:
+        return "No such file or directory";
+    case ENOMEM:
+        return "Out of memory";
+    case ENOTDIR:
+        return "Not a directory";
+    case ENXIO:
+        return "No such device or address";
+    case EPERM:
+        return "Operation not permitted";
+    case ESRCH:
+        return "No such process";
+    case EXDEV:
+        return "Cross-device link";
+    default:
+        snprintf(buffer, sizeof(buffer), "error %d", errnum);
+        return buffer;
+    }
 }
 
 void perror(const char *s)

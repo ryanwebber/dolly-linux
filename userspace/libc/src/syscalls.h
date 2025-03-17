@@ -1,11 +1,11 @@
 #ifndef _SYSCALLS_H
 #define _SYSCALLS_H
 
-#include "poll.h"
-#include "signal.h"
-#include "sys/select.h"
-#include "sys/types.h"
-#include "sys/wait.h"
+#include <poll.h>
+#include <signal.h>
+#include <sys/select.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 struct linux_dirent;
 
