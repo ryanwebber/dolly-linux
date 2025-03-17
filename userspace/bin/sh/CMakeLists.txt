@@ -19,6 +19,7 @@ add_executable(${TARGET_NAME} ${SRC_FILE})
 target_link_libraries(${TARGET_NAME}
     PRIVATE
         libc
+        libm
         $<TARGET_OBJECTS:crt0>
 )
 

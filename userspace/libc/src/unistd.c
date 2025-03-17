@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <todo+.h>
 #include <unistd.h>
 #include <which+.h>
 #include "syscalls.h"
@@ -41,8 +42,12 @@ ssize_t read(int fildes, void *buf, size_t nbyte)
 
 ssize_t write(int fildes, const void *buf, size_t nbyte)
 {
-    //
     return __syscall$write(fildes, buf, nbyte);
+}
+
+off_t lseek(int fildes, off_t offset, int whence)
+{
+    return __syscall$lseek(fildes, offset, whence);
 }
 
 int close(int fildes)
@@ -53,6 +58,12 @@ int close(int fildes)
 int dup2(int fildes, int fildes2)
 {
     return __syscall$dup2(fildes, fildes2);
+}
+
+int mkstemp(char *template)
+{
+    (void)template;
+    TODO("mkstemp");
 }
 
 int access(const char *path, int mode)

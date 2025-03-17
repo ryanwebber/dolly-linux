@@ -26,3 +26,11 @@ struct lconv *localeconv(void)
 {
     return &lconv;
 }
+
+char *setlocale(int category, const char *locale)
+{
+    // TODO: Implement locale support
+    (void)category;
+    (void)locale;
+    return "C";
+}

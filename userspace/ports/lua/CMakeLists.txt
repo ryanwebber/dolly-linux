@@ -2,6 +2,7 @@ include(ExternalProject)
 
 if (CMAKE_VERSION VERSION_GREATER_EQUAL "3.24.0")
     cmake_policy(SET CMP0135 NEW)
+    cmake_policy(SET CMP0114 NEW)
 endif()
 
 set(EXTERNAL_PROJECT_NAME "lua")
@@ -26,10 +27,14 @@ ExternalProject_Add(${EXTERNAL_PROJECT_NAME}
     BUILD_IN_SOURCE 1
     CONFIGURE_COMMAND ""
     BUILD_COMMAND make -C src dolly CC=${CMAKE_C_COMPILER} AR=${CMAKE_AR} MYCFLAGS=${CC_EXTRA_ARGS} MYLIBS=${LD_EXTRA_LIBS}$<TARGET_OBJECTS:crt0>
-    INSTALL_COMMAND make install PREFIX=${USERSPACE_INSTALL_DIR}
     INSTALL_DIR ${EXTERNAL_PROJECT_INSTALL_DIR}
     DEPENDS libc libm crt0
 
     # Apply local patches after the project is downloaded if they exist
     PATCH_COMMAND patch -p0 -u -N < ${EXTERNAL_PROJECT_PATCH_FILE}
+
+    # Set the install directory to the userspace install directory
+    INSTALL_COMMAND make install INSTALL_TOP="${USERSPACE_INSTALL_DIR}/usr/local"
 )
+
+ExternalProject_Add_StepTargets(${EXTERNAL_PROJECT_NAME} install)

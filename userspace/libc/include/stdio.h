@@ -22,29 +22,8 @@
 #define _IOLBF 1 /* Line buffered.  */
 #define _IONBF 2 /* No buffering.  */
 
-struct __file
-{
-    // File descriptor (e.g., 1 for stdout)
-    int fd;
-
-    // Pointer to buffer
-    char *buffer;
-
-    // Size of the buffer
-    size_t buf_size;
-
-    // Current position in the buffer
-    size_t buf_pos;
-
-    // Flags for error, EOF, etc.
-    int flags;
-
-    // Mode of the stream (read/write)
-    int mode;
-
-    // Whether the stream is line-buffered
-    bool is_line_buffered;
-};
+// Defined in stdio.c
+struct __file;
 
 typedef struct __file FILE;
 
@@ -69,6 +48,7 @@ int printf(const char *format, ...);
 int putchar(int c);
 int setvbuf(FILE *restrict stream, char *restrict buf, int type, size_t size);
 int snprintf(char *restrict str, size_t size, const char *restrict format, ...);
+int sprintf(char *restrict str, const char *restrict format, ...);
 int ungetc(int c, FILE *stream);
 int vfprintf(FILE *restrict stream, const char *restrict format, va_list ap);
 int vsnprintf(char *restrict str, size_t size, const char *restrict format, va_list ap);

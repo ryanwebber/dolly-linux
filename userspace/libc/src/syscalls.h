@@ -18,7 +18,7 @@ int __syscall$waitid(idtype_t idtype, id_t id, siginfo_t *infop, int options, vo
 
 ssize_t __syscall$read(int fildes, void *buf, size_t nbyte);
 ssize_t __syscall$write(int fildes, const void *buf, size_t nbyte);
-
+off_t __syscall$lseek(int fildes, off_t offset, int whence);
 int __syscall$open(const char *path, int oflag, mode_t mode);
 int __syscall$close(int fildes);
 int __syscall$dup2(int fildes, int fildes2);

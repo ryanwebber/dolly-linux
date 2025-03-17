@@ -26,9 +26,11 @@ pid_t fork(void);
 
 ssize_t read(int fildes, void *buf, size_t nbyte);
 ssize_t write(int fildes, const void *buf, size_t nbyte);
-
+off_t lseek(int fildes, off_t offset, int whence);
 int close(int fildes);
 int dup2(int fildes, int fildes2);
+
+int mkstemp(char *template);
 
 int access(const char *path, int mode);
 int chown(const char *path, uid_t owner, gid_t group);

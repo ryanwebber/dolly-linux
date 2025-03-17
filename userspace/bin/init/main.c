@@ -97,7 +97,7 @@ int main()
             };
 
             char *envp[] = {
-                "PATH=/usr/bin",
+                "PATH=/usr/bin:/usr/local/bin",
                 "HOME=/",
                 "PWD=/",
                 0,
@@ -110,7 +110,7 @@ int main()
         {
             siginfo_t info;
             waitid(P_ALL, 0, &info, WEXITED);
-            printf(__INIT_LOG_PREFIX "[init] Shell exited with status %d\n", info.si_status);
+            printf(__INIT_LOG_PREFIX "Shell exited with status %d\n", info.si_status);
         }
     }
 

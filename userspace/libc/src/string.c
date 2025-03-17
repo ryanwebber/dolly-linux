@@ -145,6 +145,22 @@ size_t strspn(const char *s, const char *charset)
     return len;
 }
 
+char *strstr(const char *haystack, const char *needle)
+{
+    size_t needle_len = strlen(needle);
+    size_t haystack_len = strlen(haystack);
+
+    for (size_t i = 0; i < haystack_len; i++)
+    {
+        if (strncmp(&haystack[i], needle, needle_len) == 0)
+        {
+            return (char *)&haystack[i];
+        }
+    }
+
+    return NULL;
+}
+
 void *memcpy(void *restrict dst, const void *restrict src, size_t n)
 {
     char *d = dst;

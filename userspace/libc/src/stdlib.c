@@ -5,8 +5,8 @@
 #include <sys/ioctl.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <todo+.h>
 #include <unistd.h>
-#include "todo.h"
 
 #define __MALLOC_HEAP_SIZE (4 * 1024 * 1024)
 
@@ -35,6 +35,13 @@ void *malloc(size_t size)
     void *ptr = &heap[heap_offset];
     heap_offset += size;
     return ptr;
+}
+
+void *realloc(void *ptr, size_t size)
+{
+    (void)ptr;
+    (void)size;
+    TODO("realloc");
 }
 
 void free(void *ptr)
@@ -117,6 +124,12 @@ char *ptsname(int fildes)
 
     snprintf(buffer, sizeof(buffer), "/dev/pts/%d", (int)pts_number);
     return buffer;
+}
+
+int system(const char *command)
+{
+    (void)command;
+    TODO("system");
 }
 
 double strtod(const char *restrict nptr, char **restrict endptr)

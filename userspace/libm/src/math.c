@@ -1,107 +1,135 @@
 #include <math.h>
 #include <float.h>
+#include <todo+.h>
 
 double acos(double x)
 {
-    return __builtin_acos(x);
+    (void)x;
+    TODO("acos");
 }
 
 double asin(double x)
 {
-    return __builtin_asin(x);
+    (void)x;
+    TODO("asin");
 }
 
 double atan2(double y, double x)
 {
-    return __builtin_atan2(y, x);
+    (void)y;
+    (void)x;
+    TODO("atan2");
 }
 
 double ceil(double x)
 {
-    return __builtin_ceil(x);
+    (void)x;
+    TODO("ceil");
 }
 
 double cos(double x)
 {
-    return __builtin_cos(x);
+    (void)x;
+    TODO("cos");
 }
 
 double cosh(double x)
 {
-    return __builtin_cosh(x);
+    (void)x;
+    TODO("cosh");
 }
 
 double exp(double x)
 {
-    return __builtin_exp(x);
+    (void)x;
+    TODO("exp");
 }
 
 double fabs(double x)
 {
-    return __builtin_fabs(x);
+    (void)x;
+    TODO("fabs");
 }
 
 double floor(double x)
 {
-    return __builtin_floor(x);
+    (void)x;
+    TODO("floor");
 }
 
 double fmod(double x, double y)
 {
-    return __builtin_fmod(x, y);
+    (void)x;
+    (void)y;
+    TODO("fmod");
 }
 
 double frexp(double value, int *exp)
 {
-    return __builtin_frexp(value, exp);
+    (void)value;
+    (void)exp;
+    TODO("frexp");
 }
 
 double ldexp(double x, int n)
 {
-    return __builtin_ldexp(x, n);
+    (void)x;
+    (void)n;
+    TODO("ldexp");
 }
 
 double log(double x)
 {
-    return __builtin_log(x);
+    (void)x;
+    TODO("log");
 }
 
 double log10(double x)
 {
-    return __builtin_log10(x);
+    (void)x;
+    TODO("log10");
 }
 
 double log2(double x)
 {
-    return __builtin_log2(x);
+    (void)x;
+    TODO("log2");
 }
 
 double pow(double x, double y)
 {
-    return __builtin_pow(x, y);
+
+    (void)x;
+    (void)y;
+    TODO("pow");
 }
 
 double sin(double x)
 {
-    return __builtin_sin(x);
+    (void)x;
+    TODO("sin");
 }
 
 double sinh(double x)
 {
-    return __builtin_sinh(x);
+    (void)x;
+    TODO("sinh");
 }
 
 double sqrt(double x)
 {
-    return __builtin_sqrt(x);
+    (void)x;
+    TODO("sqrt");
 }
 
 double tan(double x)
 {
-    return __builtin_tan(x);
+    (void)x;
+    TODO("tan");
 }
 
 double tanh(double x)
 {
-    return __builtin_tanh(x);
+    (void)x;
+    TODO("tanh");
 }
