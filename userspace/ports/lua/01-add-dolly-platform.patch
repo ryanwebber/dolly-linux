@@ -1,5 +1,14 @@
---- src/Makefile	2025-03-15 19:34:14.996264617 +0000
-+++ src/Makefile	2025-03-15 21:13:24.277895382 +0000
+--- src/Makefile	2025-03-16 20:08:50.369806052 +0000
++++ src/Makefile	2025-03-16 20:08:19.526467732 +0000
+@@ -9,7 +9,7 @@
+ CC= gcc -std=gnu99
+ CFLAGS= -O2 -Wall -Wextra -DLUA_COMPAT_5_3 $(SYSCFLAGS) $(MYCFLAGS)
+ LDFLAGS= $(SYSLDFLAGS) $(MYLDFLAGS)
+-LIBS= -lm $(SYSLIBS) $(MYLIBS)
++LIBS= $(SYSLIBS) $(MYLIBS)
+ 
+ AR= ar rcu
+ RANLIB= ranlib
 @@ -30,7 +30,7 @@
  
  # == END OF USER SETTINGS -- NO NEED TO CHANGE ANYTHING BELOW THIS LINE =======
@@ -17,7 +26,7 @@
 +	$(MAKE) $(ALL) \
 +		CC="$(CC) -std=gnu99" \
 +		AR="$(AR) rcu" \
-+		SYSCFLAGS="-ffreestanding -nostdlib -nostdinc -nostartfiles -nodefaultlibs -fno-builtin -fmax-errors=5" \
++		SYSCFLAGS="-ffreestanding -nostdlib -nostdinc -nostartfiles -nodefaultlibs -fno-builtin" \
 +		SYSLDFLAGS="-static -nostartfiles -nostdlib -nodefaultlibs -z noexecstack" \
 +		SYSLIBS=""
 +
