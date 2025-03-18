@@ -9,7 +9,7 @@ set(SUBDIRS
 # Include subdirectories (each subdirectory is expected to define its own install rules)
 foreach(SUBDIR ${SUBDIRS})
     # Check the PORTS list variable to see if it includes the current subdirectory or 'all'
-    if(${SUBDIR} IN_LIST PORTS OR PORTS STREQUAL "all")
+    if(${SUBDIR} IN_LIST PORTS)
         message(STATUS "Including port: ${SUBDIR}")
         add_subdirectory(${SUBDIR})
     endif()

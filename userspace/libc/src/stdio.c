@@ -3,11 +3,11 @@
 #include <stdarg.h>
 #include <stdbool.h>
 #include <stdio.h>
-#include <todo+.h>
+#include <stdlib+.h>
 #include <unistd.h>
 
 #define __FILE_BUFFER_SIZE 1024
-#define __FILE_FLAG_EOF 0x1
+#define __FILE_FLAG_EOF 0b001
 
 struct __file
 {
@@ -33,10 +33,11 @@ struct __file
     bool is_line_buffered;
 };
 
+static char stdin_buffer[__FILE_BUFFER_SIZE];
 static FILE stdin_file = (FILE){
     .fd = STDIN_FILENO,
-    .buffer = NULL,
-    .buf_size = 0,
+    .buffer = stdin_buffer,
+    .buf_size = __FILE_BUFFER_SIZE,
     .buf_pos = 0,
     .flags = 0,
     .mode = 0,
@@ -88,8 +89,8 @@ static int flush_buffer(FILE *stream)
 
     if (stream->buf_pos > 0)
     {
-        // Write the buffer content to stdout
-        write(1, stream->buffer, stream->buf_pos);
+        // Write the buffer content
+        write(stream->fd, stream->buffer, stream->buf_pos);
 
         // Reset the buffer position
         stream->buf_pos = 0;
@@ -227,11 +228,11 @@ int fgetc(FILE *stream)
     char c;
     if (read(stream->fd, &c, 1) == 1)
     {
-        stream->buffer[stream->buf_pos++] = c;
         return c;
     }
     else
     {
+        write(1, "EOF\n", 4);
         stream->flags |= __FILE_FLAG_EOF;
         return EOF;
     }
@@ -376,6 +377,7 @@ int snprintf(char *restrict str, size_t size, const char *restrict format, ...)
 
 int vfprintf(FILE *restrict stream, const char *restrict format, va_list args)
 {
+    int count = 0;
     while (*format != '\0')
     {
         if (*format == '%' && *(format + 1) != '\0')
@@ -388,6 +390,7 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list args)
                 int i = va_arg(args, int);
                 if (i < 0)
                 {
+                    count++;
                     fputc('-', stream);
                     i = -i;
                 }
@@ -402,6 +405,7 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list args)
                 // Print each digit
                 while (divisor > 0)
                 {
+                    count++;
                     int digit = i / divisor;
                     fputc('0' + digit, stream);
                     i %= divisor;
@@ -413,25 +417,26 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list args)
             case 's':
             {
                 char *s = va_arg(args, char *);
-                fputs(s, stream);
+                count += fputs(s, stream);
                 break;
             }
             default:
             {
-                fnwrites("{?}", 3, stream);
+                count += fnwrites("{?}", 3, stream);
                 break;
             }
             }
         }
         else
         {
+            count++;
             fputc(*format, stream);
         }
 
         format++;
     }
 
-    return 0;
+    return count;
 }
 
 int vsnprintf(char *restrict str, size_t size, const char *restrict format, va_list ap)
@@ -446,12 +451,19 @@ int vsnprintf(char *restrict str, size_t size, const char *restrict format, va_l
         .is_line_buffered = false,
     };
 
-    vfprintf(&stream, format, ap);
+    int count = vfprintf(&stream, format, ap);
 
     // Null-terminate the string
     if (size > 0)
     {
-        str[size - 1] = '\0';
+        if ((size_t)count < size)
+        {
+            str[count] = '\0';
+        }
+        else
+        {
+            str[size - 1] = '\0';
+        }
     }
 
     return 0;

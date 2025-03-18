@@ -3,6 +3,9 @@
 #ifndef _ASSERT_H
 #define _ASSERT_H
 
-#define assert(ignore) ((void)0)
+#include <stdio.h>
+
+#define assert(expr) \
+    ((expr) ? (void)0 : (fprintf(stderr, "Assertion failed: %s, file %s, line %d\n", #expr, __FILE__, __LINE__), abort()))
 
 #endif

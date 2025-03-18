@@ -1,10 +1,12 @@
 #include <time.h>
-#include <todo+.h>
+#include <stdlib+.h>
 
 time_t time(time_t *tloc)
 {
     (void)tloc;
-    TODO("time");
+
+    // TODO: Implement time
+    return 1742250559;
 }
 
 clock_t clock(void)

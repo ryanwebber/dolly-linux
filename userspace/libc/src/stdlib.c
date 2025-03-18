@@ -5,13 +5,10 @@
 #include <sys/ioctl.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-#include <todo+.h>
+#include <stdlib+.h>
 #include <unistd.h>
 
 #define __MALLOC_HEAP_SIZE (4 * 1024 * 1024)
-
-static char heap[__MALLOC_HEAP_SIZE];
-static size_t heap_offset = 0;
 
 void exit(int status)
 {
@@ -20,17 +17,28 @@ void exit(int status)
 
 void abort(void)
 {
+    fprintf(stderr, "Aborted\n");
     exit(1);
 }
 
-// Trivial malloc implementation that just leaks memory
-// just to get the system stood up
 void *malloc(size_t size)
 {
+    // Trivial malloc implementation that just leaks memory
+    // just to get the system stood up
+
+    static char heap[__MALLOC_HEAP_SIZE];
+    static size_t heap_offset = 0;
+
     if (heap_offset + size >= __MALLOC_HEAP_SIZE)
     {
         return NULL;
     }
+
+    // Write the size of the allocation at the beginning of the block
+    size_t *size_ptr = (size_t *)&heap[heap_offset];
+    *size_ptr = size;
+
+    heap_offset += sizeof(size_t);
 
     void *ptr = &heap[heap_offset];
     heap_offset += size;
@@ -39,9 +47,32 @@ void *malloc(size_t size)
 
 void *realloc(void *ptr, size_t size)
 {
-    (void)ptr;
-    (void)size;
-    TODO("realloc");
+    // Trivial realloc implementation that just leaks memory
+    // just to get the system stood up
+    if (ptr == NULL)
+    {
+        return malloc(size);
+    }
+
+    size_t *size_ptr = (size_t *)((char *)ptr - sizeof(size_t));
+    size_t old_size = *size_ptr;
+
+    void *new_ptr = malloc(size);
+    if (new_ptr == NULL)
+    {
+        return NULL;
+    }
+
+    if (old_size < size)
+    {
+        memcpy(new_ptr, ptr, old_size);
+    }
+    else
+    {
+        memcpy(new_ptr, ptr, size);
+    }
+
+    return new_ptr;
 }
 
 void free(void *ptr)

@@ -1,14 +1,14 @@
 
-#include <poll.h>
+#include <assert.h>
 #include <fcntl.h>
+#include <math.h>
+#include <poll.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
-#include <unistd.h>
 #include <string.h>
 #include <sys/wait.h>
-
-#include <math.h>
+#include <unistd.h>
 
 #define MAX_INPUT 1024
 #define MAX_ARGS 128
@@ -147,13 +147,6 @@ int main(int argc, char *argv[], char *envp[])
         // If the user entered an empty command, skip
         if (arg_count == 0)
         {
-            continue;
-        }
-
-        if (args[0][0] == '*')
-        {
-            double x = pow(2, 3);
-            printf("pow(2, 3) = %d\n", (int)x);
             continue;
         }
 

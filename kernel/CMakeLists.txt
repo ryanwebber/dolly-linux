@@ -19,7 +19,7 @@ set(KERNEL_BUILD_JOBS 4)
 
 set(KERNEL_BUILD_IMAGE "${CMAKE_BINARY_DIR}/${KERNEL_VERSION}.bin")
 set(KERNEL_BUILD_IMAGE ${KERNEL_BUILD_IMAGE} PARENT_SCOPE)
-    
+
 FetchContent_Declare(
     kernel_source
     URL ${KERNEL_URL}

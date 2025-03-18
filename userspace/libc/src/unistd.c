@@ -1,11 +1,14 @@
 #include <stdlib.h>
-#include <todo+.h>
+#include <stdio.h>
+#include <stdlib+.h>
 #include <unistd.h>
 #include <which+.h>
 #include "syscalls.h"
 
 void _exit(int status)
 {
+    fflush(stdout);
+    fflush(stderr);
     __syscall$exit(status);
 }
 
