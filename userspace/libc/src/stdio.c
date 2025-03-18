@@ -1,8 +1,10 @@
+#include <assert.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <stdarg.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
 #include <stdlib+.h>
 #include <unistd.h>
 
@@ -70,16 +72,6 @@ FILE *stdin = &stdin_file;
 FILE *stdout = &stdout_file;
 FILE *stderr = &stderr_file;
 
-static size_t fnwrites(const char *str, size_t count, FILE *stream)
-{
-    for (size_t i = 0; i < count; i++)
-    {
-        fputc(str[i], stream);
-    }
-
-    return count;
-}
-
 static int flush_buffer(FILE *stream)
 {
     if (stream->fd < 0)
@@ -98,6 +90,39 @@ static int flush_buffer(FILE *stream)
 
     // TODO: This is not always successful
     return 0;
+}
+
+static size_t print_sign(long long value)
+{
+    size_t count = 0;
+    if (value < 0)
+    {
+        count++;
+        fputc('-', stdout);
+    }
+
+    return count;
+}
+
+static size_t print_integral(unsigned long long value)
+{
+    size_t count = 0;
+    unsigned long long divisor = 1;
+    while (value / divisor >= 10)
+    {
+        divisor *= 10;
+    }
+
+    while (divisor > 0)
+    {
+        count++;
+        int digit = value / divisor;
+        fputc('0' + digit, stdout);
+        value %= divisor;
+        divisor /= 10;
+    }
+
+    return count;
 }
 
 char *fgets(char *restrict str, int size, FILE *restrict stream)
@@ -232,7 +257,6 @@ int fgetc(FILE *stream)
     }
     else
     {
-        write(1, "EOF\n", 4);
         stream->flags |= __FILE_FLAG_EOF;
         return EOF;
     }
@@ -260,13 +284,9 @@ int fputc(int c, FILE *stream)
 
 int fputs(const char *s, FILE *stream)
 {
-    size_t len = 0;
-    while (s[len] != '\0')
-    {
-        len++;
-    }
-
-    return fnwrites(s, len, stream);
+    size_t len = strlen(s);
+    fwrite(s, 1, len, stream);
+    return len;
 }
 
 int fseek(FILE *stream, long offset, int whence)
@@ -340,7 +360,11 @@ int sprintf(char *restrict str, const char *restrict format, ...)
     va_list args;
     va_start(args, format);
 
-    int result = vsnprintf(str, 0, format, args);
+    // man(3): The sprintf() and vsprintf() functions effectively assume a size of INT_MAX + 1.
+    size_t size = ((size_t)2147483647) + 1;
+    assert(size > 2147483647);
+
+    int result = vsnprintf(str, size, format, args);
 
     va_end(args);
 
@@ -385,45 +409,63 @@ int vfprintf(FILE *restrict stream, const char *restrict format, va_list args)
             format++;
             switch (*format)
             {
-            case 'd':
+            case 'd': // %d
             {
                 int i = va_arg(args, int);
-                if (i < 0)
-                {
-                    count++;
-                    fputc('-', stream);
-                    i = -i;
-                }
-
-                // Write out the digits in order
-                int divisor = 1;
-                while (i / divisor >= 10)
-                {
-                    divisor *= 10;
-                }
-
-                // Print each digit
-                while (divisor > 0)
-                {
-                    count++;
-                    int digit = i / divisor;
-                    fputc('0' + digit, stream);
-                    i %= divisor;
-                    divisor /= 10;
-                }
-
+                count += print_sign((long long)i);
+                count += print_integral((unsigned long long)i);
                 break;
             }
-            case 's':
+            case 's': // %s
             {
                 char *s = va_arg(args, char *);
                 count += fputs(s, stream);
                 break;
             }
+            case 'l':
+            {
+                // Check next character
+                format++;
+                assert(*format != '\0');
+                switch (*format)
+                {
+                case 'd': // %ld
+                {
+                    long i = va_arg(args, long);
+                    count += print_sign((long long)i);
+                    count += print_integral((unsigned long long)i);
+                    break;
+                }
+                case 'l': // %ll
+                {
+                    format++;
+                    assert(*format != '\0');
+                    switch (*format)
+                    {
+                    case 'd': // %lld
+                    {
+                        long long i = va_arg(args, long long);
+                        count += print_sign((long long)i);
+                        count += print_integral((unsigned long long)i);
+                        break;
+                    }
+                    default:
+                    {
+                        UNREACHABLE();
+                    }
+                    }
+                    break;
+                }
+                default:
+                {
+                    UNREACHABLE();
+                }
+                }
+                break;
+            }
             default:
             {
-                count += fnwrites("{?}", 3, stream);
-                break;
+                UNREACHABLE();
             }
             }
         }
@@ -506,7 +548,12 @@ size_t fwrite(const void *restrict ptr, size_t size, size_t nitems, FILE *restri
 {
     size_t count = size * nitems;
     const char *str = ptr;
-    return fnwrites(str, count, stream);
+    for (size_t i = 0; i < count; i++)
+    {
+        fputc(str[i], stream);
+    }
+
+    return count;
 }
 
 int ferror(FILE *stream)
